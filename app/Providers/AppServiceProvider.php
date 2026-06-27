@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Core\Modules\ModuleRegistry;
+use App\Http\Responses\AgricartLoginResponse;
 use App\Modules\Accounts\AccountsModule;
 use App\Modules\Approvals\ApprovalsModule;
 use App\Modules\Catalog\CatalogModule;
@@ -16,6 +17,7 @@ use App\Modules\Reports\ReportsModule;
 use App\Modules\Sales\SalesModule;
 use App\Modules\Settings\SettingsModule;
 use App\Modules\Store\StoreModule;
+use Filament\Auth\Http\Responses\Contracts\LoginResponse;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(LoginResponse::class, AgricartLoginResponse::class);
+
         ModuleRegistry::register(ApprovalsModule::class);
         ModuleRegistry::register(ContactsModule::class);
         ModuleRegistry::register(CatalogModule::class);

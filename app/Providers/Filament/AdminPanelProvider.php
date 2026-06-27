@@ -5,6 +5,8 @@ namespace App\Providers\Filament;
 use App\Core\Filament\FontProviders\SystemFontProvider;
 use App\Core\Filament\Pages\Dashboard;
 use App\Core\Modules\ModuleRegistry;
+use App\Filament\Auth\Login;
+use App\Http\Middleware\RedirectRegistrationApplicants;
 use Filament\Enums\GlobalSearchPosition;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
@@ -33,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
+            ->login(Login::class)
             ->brandName('Agricart')
             ->font('Arial', provider: SystemFontProvider::class, preload: [])
             ->breadcrumbs()
@@ -68,6 +70,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                RedirectRegistrationApplicants::class,
             ])
             ->renderHook(
                 PanelsRenderHook::GLOBAL_SEARCH_AFTER,

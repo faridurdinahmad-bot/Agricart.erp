@@ -2,6 +2,9 @@
 
 namespace App\Core\Filament\Pages;
 
+use App\Core\Authorization\PermissionCatalog;
+use App\Models\User;
+use Filament\Clusters\Cluster;
 use Filament\Pages\Page;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\View;
@@ -10,6 +13,32 @@ use Filament\Schemas\Schema;
 abstract class BaseModulePage extends Page
 {
     protected static bool $shouldRegisterNavigation = true;
+
+    public static function canAccess(): bool
+    {
+        $user = auth()->user();
+
+        if (! $user instanceof User) {
+            return false;
+        }
+
+        $clusterClass = static::getCluster();
+
+        if (! $clusterClass || ! is_subclass_of($clusterClass, Cluster::class)) {
+            return false;
+        }
+
+        /** @var class-string<Cluster> $clusterClass */
+        $moduleSlug = $clusterClass::getSlug();
+        $pageSlug = static::getSlug();
+
+        return $user->canViewPage($moduleSlug, $pageSlug);
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return static::$shouldRegisterNavigation && static::canAccess();
+    }
 
     public function rendering(): void
     {

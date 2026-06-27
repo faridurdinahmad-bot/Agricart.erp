@@ -3,20 +3,20 @@
 namespace App\Providers\Filament;
 
 use App\Core\Filament\FontProviders\SystemFontProvider;
+use App\Core\Filament\Pages\Dashboard;
 use App\Core\Modules\ModuleRegistry;
+use Filament\Enums\GlobalSearchPosition;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Contracts\View\View;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -39,9 +39,9 @@ class AdminPanelProvider extends PanelProvider
             ->breadcrumbs()
             ->darkMode()
             ->defaultThemeMode(ThemeMode::Light)
-            ->globalSearch()
+            ->globalSearch(position: GlobalSearchPosition::Sidebar) // Rendered in topbar via navigation.blade.php hook
             ->sidebarCollapsibleOnDesktop()
-            ->sidebarWidth('16rem')
+            ->sidebarWidth('11.25rem')
             ->subNavigationPosition(SubNavigationPosition::Top)
             ->colors([
                 'primary' => Color::hex('#83B735'),
@@ -54,7 +54,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -73,6 +72,14 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::GLOBAL_SEARCH_AFTER,
                 fn (): View => view('filament.components.topbar.tools'),
+            )
+            ->renderHook(
+                PanelsRenderHook::TOPBAR_LOGO_AFTER,
+                fn (): View => view('filament.components.topbar.navigation'),
+            )
+            ->renderHook(
+                PanelsRenderHook::CONTENT_BEFORE,
+                fn (): View => view('filament.components.layout.module-sub-navigation'),
             );
 
         ModuleRegistry::configurePanel($panel);

@@ -11,6 +11,12 @@ abstract class BaseModulePage extends Page
 {
     protected static bool $shouldRegisterNavigation = true;
 
+    public function rendering(): void
+    {
+        view()->share('agricartLayoutBreadcrumbs', $this->getBreadcrumbs());
+        view()->share('agricartLayoutSubNavigation', $this->getCachedSubNavigation());
+    }
+
     public function getBreadcrumbs(): array
     {
         $cluster = static::getCluster();

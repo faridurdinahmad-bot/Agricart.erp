@@ -11,7 +11,7 @@ class PurchasePricingPage extends BaseModulePage
 {
     protected static ?string $cluster = SettingsCluster::class;
 
-    protected static ?string $navigationLabel = 'Purchase Pricing';
+    protected static ?string $navigationLabel = 'Pricing';
 
     protected static ?string $title = 'Purchase Pricing';
 

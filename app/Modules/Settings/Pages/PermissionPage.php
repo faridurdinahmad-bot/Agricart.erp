@@ -11,7 +11,7 @@ class PermissionPage extends BaseModulePage
 {
     protected static ?string $cluster = SettingsCluster::class;
 
-    protected static ?string $navigationLabel = 'Permission';
+    protected static ?string $navigationLabel = 'Roles';
 
     protected static ?string $title = 'Permission';
 

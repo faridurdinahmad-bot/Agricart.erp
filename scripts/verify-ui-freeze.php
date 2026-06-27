@@ -5,7 +5,7 @@
  * Run: php scripts/verify-ui-freeze.php [base_url]
  */
 
-$baseUrl = $argv[1] ?? 'http://127.0.0.1:8003';
+$baseUrl = $argv[1] ?? 'http://agricart.test:8002';
 
 $routes = [
     '/admin',

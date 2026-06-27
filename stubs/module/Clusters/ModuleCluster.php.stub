@@ -10,7 +10,7 @@ class {{ModuleName}}Cluster extends BaseModuleCluster
 {
     protected static string | \BackedEnum | null $navigationIcon = {{Heroicon}};
 
-    /** Update ModuleNavigationSort::NEXT_AVAILABLE after adding this module. */
+    /** Update ModuleNavigationSort::NEXT_AVAILABLE after adding this module. Must stay below SETTINGS. */
     protected static ?int $navigationSort = ModuleNavigationSort::NEXT_AVAILABLE;
 
     protected static ?string $slug = '{{module_id}}';

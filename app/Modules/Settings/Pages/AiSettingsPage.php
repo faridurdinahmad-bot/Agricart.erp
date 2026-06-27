@@ -11,7 +11,7 @@ class AiSettingsPage extends BaseModulePage
 {
     protected static ?string $cluster = SettingsCluster::class;
 
-    protected static ?string $navigationLabel = 'AI Settings';
+    protected static ?string $navigationLabel = 'AI';
 
     protected static ?string $title = 'AI Settings';
 

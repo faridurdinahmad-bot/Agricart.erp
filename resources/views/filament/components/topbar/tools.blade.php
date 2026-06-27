@@ -21,10 +21,6 @@
         </x-filament::dropdown.list>
     </x-filament::dropdown>
 
-    <div class="agricart-topbar-theme-switcher">
-        <x-filament-panels::theme-switcher />
-    </div>
-
     <button
         type="button"
         class="agricart-topbar-tool-btn"

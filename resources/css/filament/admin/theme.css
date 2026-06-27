@@ -65,6 +65,12 @@ html.fi .fi-body {
     border-inline-end: 1px solid var(--agricart-border);
 }
 
+.fi-sidebar-item-label {
+    overflow: visible;
+    text-overflow: unset;
+    white-space: nowrap;
+}
+
 .fi-sidebar-nav {
     padding-block: 0.75rem;
     gap: 0.25rem;
@@ -89,6 +95,57 @@ html.fi .fi-body {
     border-block-end: 1px solid var(--agricart-border);
     backdrop-filter: blur(10px);
     min-height: 4rem;
+}
+
+.fi-topbar-start {
+    display: flex !important;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    gap: 0.75rem;
+}
+
+.agricart-topbar-breadcrumbs {
+    display: none;
+    align-items: center;
+    min-width: 0;
+    padding-inline-start: 1rem;
+    border-inline-start: 1px solid var(--agricart-border);
+}
+
+.agricart-topbar-breadcrumbs .fi-breadcrumbs {
+    margin-block-end: 0;
+}
+
+@media (min-width: 1024px) {
+    .agricart-topbar-breadcrumbs {
+        display: flex;
+    }
+}
+
+.agricart-topbar-search {
+    display: none;
+    flex: 0 1 22rem;
+    min-width: 10rem;
+    max-width: 22rem;
+    margin-inline-start: auto;
+    margin-inline-end: 0.75rem;
+}
+
+.agricart-topbar-search .fi-global-search-ctn,
+.agricart-topbar-search .fi-global-search,
+.agricart-topbar-search .fi-global-search-field {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .agricart-topbar-search {
+        display: block;
+    }
+}
+
+.fi-sidebar .fi-global-search-ctn {
+    display: none !important;
 }
 
 .agricart-topbar-tools {
@@ -123,10 +180,43 @@ html.fi .fi-body {
     font-weight: 600;
 }
 
-.agricart-topbar-theme-switcher .fi-theme-switcher {
-    padding: 0.125rem;
-    border-radius: 0.75rem;
-    background-color: color-mix(in oklab, var(--agricart-border) 50%, transparent);
+/* ── Main layout: sub-nav bar sits below topbar, beside sidebar ── */
+.fi-main-ctn {
+    display: flex;
+    flex-direction: column;
+}
+
+.agricart-module-subnav {
+    flex-shrink: 0;
+    width: 100%;
+    background-color: var(--agricart-surface);
+    border-block-end: 1px solid var(--agricart-border);
+    padding: 0.5rem 0.875rem;
+}
+
+.agricart-module-subnav .fi-page-sub-navigation-tabs {
+    padding: 0;
+    margin: 0;
+    border: none;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    gap: 0.25rem;
+}
+
+.fi-main {
+    flex: 1;
+    min-height: 0;
+}
+
+/* Hide breadcrumbs & sub-nav duplicated inside page content */
+@media (min-width: 1024px) {
+    .fi-page .fi-header .fi-breadcrumbs {
+        display: none !important;
+    }
+}
+
+.fi-page.fi-page-has-sub-navigation-top .fi-page-main > .fi-page-sub-navigation-tabs {
+    display: none !important;
 }
 
 /* ── Module navigation bar (horizontal tabs) ── */
@@ -142,7 +232,7 @@ html.fi .fi-body {
 .fi-page-sub-navigation-tabs .fi-tabs-item {
     border-radius: 0.75rem;
     white-space: nowrap;
-    padding-inline: 1rem;
+    padding-inline: 0.75rem;
 }
 
 .fi-page-sub-navigation-tabs .fi-tabs-item.fi-active {

@@ -11,7 +11,7 @@ class PrintingPage extends BaseModulePage
 {
     protected static ?string $cluster = SettingsCluster::class;
 
-    protected static ?string $navigationLabel = 'Printing';
+    protected static ?string $navigationLabel = 'Print';
 
     protected static ?string $title = 'Printing';
 

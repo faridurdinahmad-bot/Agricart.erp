@@ -11,7 +11,7 @@ class TaxSystemPage extends BaseModulePage
 {
     protected static ?string $cluster = SettingsCluster::class;
 
-    protected static ?string $navigationLabel = 'Tax System';
+    protected static ?string $navigationLabel = 'Tax';
 
     protected static ?string $title = 'Tax System';
 

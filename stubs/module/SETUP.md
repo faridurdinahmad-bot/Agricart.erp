@@ -43,8 +43,21 @@ ModuleRegistry::register(ProductsModule::class);
 
 ## Sidebar order
 
-| Module | Sort constant |
-|--------|---------------|
-| Dashboard (Filament core) | `-2` |
-| Settings | `ModuleNavigationSort::SETTINGS` (2) |
-| Next module | `ModuleNavigationSort::NEXT_AVAILABLE` (3) |
+| # | Module | Sort constant |
+|---|--------|---------------|
+| 1 | Dashboard (Filament core) | `-2` |
+| 2 | Approvals | `ModuleNavigationSort::APPROVALS` (2) |
+| 3 | Contacts | `ModuleNavigationSort::CONTACTS` (3) |
+| 4 | Catalog | `ModuleNavigationSort::CATALOG` (4) |
+| 5 | Inventory | `ModuleNavigationSort::INVENTORY` (5) |
+| 6 | Sales | `ModuleNavigationSort::SALES` (6) |
+| 7 | Store | `ModuleNavigationSort::STORE` (7) |
+| 8 | Logistics | `ModuleNavigationSort::LOGISTICS` (8) |
+| 9 | Reports | `ModuleNavigationSort::REPORTS` (9) |
+| 10 | HR | `ModuleNavigationSort::HR` (10) |
+| 11 | Accounts | `ModuleNavigationSort::ACCOUNTS` (11) |
+| 12 | Marketplace | `ModuleNavigationSort::MARKETPLACE` (12) |
+| 14 | Settings | `ModuleNavigationSort::SETTINGS` (14) |
+| 15 | Documentation (last) | `ModuleNavigationSort::DOCUMENTATION` (15) |
+
+**Rule:** Insert every new module before Documentation using `NEXT_AVAILABLE` (currently 16).

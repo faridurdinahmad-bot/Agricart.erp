@@ -11,7 +11,7 @@ class BackupsPage extends BaseModulePage
 {
     protected static ?string $cluster = SettingsCluster::class;
 
-    protected static ?string $navigationLabel = 'Backups';
+    protected static ?string $navigationLabel = 'Backup';
 
     protected static ?string $title = 'Backups';
 

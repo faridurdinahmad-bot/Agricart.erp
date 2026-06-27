@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Modules\{{ModuleName}}\Pages;
+
+use App\Core\Filament\Pages\BaseModulePage;
+use App\Modules\{{ModuleName}}\Clusters\{{ModuleName}}Cluster;
+use App\Modules\{{ModuleName}}\Navigation\{{ModuleName}}Navigation;
+use Filament\Support\Icons\Heroicon;
+
+class OverviewPage extends BaseModulePage
+{
+    protected static ?string $cluster = {{ModuleName}}Cluster::class;
+
+    protected static ?string $navigationLabel = 'Overview';
+
+    protected static ?string $title = 'Overview';
+
+    protected static ?string $slug = 'overview';
+
+    protected static ?int $navigationSort = {{ModuleName}}Navigation::OVERVIEW;
+
+    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedSquares2x2;
+}

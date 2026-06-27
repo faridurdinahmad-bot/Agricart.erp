@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Modules\{{ModuleName}}\Pages;
+
+use App\Core\Filament\Pages\BaseModulePage;
+use App\Modules\{{ModuleName}}\Clusters\{{ModuleName}}Cluster;
+use App\Modules\{{ModuleName}}\Navigation\{{ModuleName}}Navigation;
+use Filament\Support\Icons\Heroicon;
+
+class {{PageName}}Page extends BaseModulePage
+{
+    protected static ?string $cluster = {{ModuleName}}Cluster::class;
+
+    protected static ?string $navigationLabel = '{{PageLabel}}';
+
+    protected static ?string $title = '{{PageLabel}}';
+
+    protected static ?string $slug = '{{page_slug}}';
+
+    protected static ?int $navigationSort = {{ModuleName}}Navigation::{{PAGE_SORT_CONSTANT}};
+
+    protected static string | \BackedEnum | null $navigationIcon = {{Heroicon}};
+}

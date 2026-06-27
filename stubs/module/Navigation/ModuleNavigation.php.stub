@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Modules\{{ModuleName}}\Navigation;
+
+/**
+ * Defines submenu order for the {{ModuleLabel}} module.
+ * Add one constant per page; reference from each page's $navigationSort.
+ */
+class {{ModuleName}}Navigation
+{
+    public const OVERVIEW = 1;
+
+    // public const EXAMPLE = 2;
+}

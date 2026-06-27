@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Modules\{{ModuleName}};
+
+use App\Core\Modules\Contracts\ModuleInterface;
+use App\Modules\{{ModuleName}}\Pages\OverviewPage;
+use Filament\Panel;
+
+class {{ModuleName}}Module implements ModuleInterface
+{
+    public static function id(): string
+    {
+        return '{{module_id}}';
+    }
+
+    public static function registerPanel(Panel $panel): void
+    {
+        $panel->discoverClusters(
+            in: app_path('Modules/{{ModuleName}}'),
+            for: 'App\\Modules\\{{ModuleName}}',
+        );
+    }
+
+    public static function homePage(): string
+    {
+        return OverviewPage::class;
+    }
+}

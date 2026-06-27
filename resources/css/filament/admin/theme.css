@@ -1,0 +1,276 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Modules/**/*.php';
+@source '../../../../app/Core/**/*.php';
+@source '../../../../resources/views/filament/**/*.blade.php';
+
+@theme inline {
+    --font-sans: Arial, sans-serif;
+    --color-accent-50: oklch(0.98 0.04 95);
+    --color-accent-100: oklch(0.95 0.08 95);
+    --color-accent-200: oklch(0.9 0.12 95);
+    --color-accent-300: oklch(0.85 0.14 95);
+    --color-accent-400: oklch(0.82 0.15 95);
+    --color-accent-500: #fbbc34;
+    --color-accent-600: oklch(0.72 0.14 95);
+    --color-accent-700: oklch(0.62 0.12 95);
+    --color-accent-800: oklch(0.52 0.1 95);
+    --color-accent-900: oklch(0.42 0.08 95);
+    --color-accent-950: oklch(0.32 0.06 95);
+}
+
+/* ── Typography: Arial only (English & Urdu) ── */
+html.fi,
+html.fi body,
+html.fi .fi-body {
+    font-family: Arial, sans-serif;
+}
+
+/* ── Agricart brand surfaces ── */
+.fi-body {
+    --agricart-bg: #f4f5f7;
+    --agricart-surface: #ffffff;
+    --agricart-border: #ebedf0;
+    --agricart-muted: #64748b;
+    --agricart-primary-hover: #74a32f;
+}
+
+.dark .fi-body {
+    --agricart-bg: #0f1115;
+    --agricart-surface: #171a21;
+    --agricart-border: #262b36;
+    --agricart-muted: #94a3b8;
+    --agricart-primary-hover: #74a32f;
+}
+
+.fi-body {
+    background-color: var(--agricart-bg);
+}
+
+.fi-main {
+    background-color: var(--agricart-bg);
+}
+
+.fi-main-ctn {
+    padding: 0.5rem;
+}
+
+.fi-page-content {
+    padding-block: 0.5rem 2rem;
+}
+
+/* ── Sidebar ── */
+.fi-sidebar {
+    background-color: var(--agricart-surface);
+    border-inline-end: 1px solid var(--agricart-border);
+}
+
+.fi-sidebar-nav {
+    padding-block: 0.75rem;
+    gap: 0.25rem;
+}
+
+.fi-sidebar-item-btn {
+    border-radius: 0.75rem;
+    padding-block: 0.625rem;
+}
+
+.fi-sidebar-item-btn:hover {
+    background-color: color-mix(in oklab, var(--primary-500) 6%, transparent);
+}
+
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+    background-color: color-mix(in oklab, var(--primary-500) 10%, transparent);
+}
+
+/* ── Topbar ── */
+.fi-topbar {
+    background-color: color-mix(in oklab, var(--agricart-surface) 92%, var(--agricart-bg));
+    border-block-end: 1px solid var(--agricart-border);
+    backdrop-filter: blur(10px);
+    min-height: 4rem;
+}
+
+.agricart-topbar-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-inline-end: 0.75rem;
+}
+
+.agricart-topbar-tool-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
+    color: var(--agricart-muted);
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.agricart-topbar-tool-btn:hover {
+    background-color: color-mix(in oklab, var(--primary-500) 8%, transparent);
+    color: var(--agricart-primary-hover);
+}
+
+.agricart-topbar-tool-btn__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.agricart-topbar-tool-btn__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.agricart-topbar-theme-switcher .fi-theme-switcher {
+    padding: 0.125rem;
+    border-radius: 0.75rem;
+    background-color: color-mix(in oklab, var(--agricart-border) 50%, transparent);
+}
+
+/* ── Module navigation bar (horizontal tabs) ── */
+.fi-page-sub-navigation-tabs {
+    padding: 0.75rem 0 1.25rem;
+    border-block-end: 1px solid var(--agricart-border);
+    margin-block-end: 2rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    gap: 0.375rem;
+}
+
+.fi-page-sub-navigation-tabs .fi-tabs-item {
+    border-radius: 0.75rem;
+    white-space: nowrap;
+    padding-inline: 1rem;
+}
+
+.fi-page-sub-navigation-tabs .fi-tabs-item.fi-active {
+    background-color: color-mix(in oklab, var(--primary-500) 10%, transparent);
+}
+
+/* ── Page header ── */
+.fi-header {
+    margin-block-end: 1.25rem;
+    padding-block-start: 0.5rem;
+}
+
+.fi-header-heading {
+    font-weight: 600;
+}
+
+.fi-breadcrumbs {
+    margin-block-end: 0.625rem;
+}
+
+/* ── Dashboard widgets ── */
+.fi-wi-widget {
+    border-radius: 1rem;
+    border-color: var(--agricart-border);
+    box-shadow: none;
+}
+
+/* ── Coming soon placeholder card ── */
+.agricart-coming-soon-section {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.agricart-coming-soon-section > .fi-section-content-ctn {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.agricart-coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 2.5rem;
+    border-radius: 1rem;
+    background-color: var(--agricart-surface);
+    border: 1px solid var(--agricart-border);
+    box-shadow: none;
+}
+
+.agricart-coming-soon__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 1rem;
+    background-color: color-mix(in oklab, var(--primary-500) 10%, transparent);
+    color: var(--primary-600);
+    margin-block-end: 1.5rem;
+}
+
+.agricart-coming-soon__icon-svg {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.agricart-coming-soon__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: inherit;
+    margin-block-end: 0.625rem;
+}
+
+.agricart-coming-soon__description {
+    font-size: 0.875rem;
+    color: var(--agricart-muted);
+    max-width: 26rem;
+    line-height: 1.6;
+}
+
+/* ── Primary button hover ── */
+.fi-btn.fi-color-primary:not(.fi-disabled):not([disabled]):hover {
+    --bg: var(--agricart-primary-hover);
+}
+
+.fi-sidebar-item-btn:hover,
+.fi-tabs-item:hover {
+    color: var(--agricart-primary-hover);
+}
+
+/* ── Logo accent dot ── */
+.fi-logo {
+    font-weight: 700;
+}
+
+.fi-logo::after {
+    content: '';
+    display: inline-block;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 9999px;
+    background-color: var(--color-accent-500);
+    margin-inline-start: 0.125rem;
+    vertical-align: super;
+}
+
+/* ── Responsive module nav ── */
+@media (max-width: 640px) {
+    .agricart-topbar-tool-btn__label {
+        display: none;
+    }
+
+    .agricart-coming-soon {
+        padding: 3rem 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .fi-main {
+        padding-inline: 1rem;
+    }
+
+    .fi-page-header-main-ctn {
+        padding-inline: 0.5rem;
+    }
+}

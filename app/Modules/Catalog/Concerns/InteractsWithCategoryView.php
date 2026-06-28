@@ -40,38 +40,60 @@ trait InteractsWithCategoryView
                 'promptInfo' => $this->viewingCategoryPromptInfo,
                 'urlRedirects' => $this->viewingCategoryUrlRedirects,
             ]))
-            ->modalFooterActions([
-                Action::make('closeViewCategory')
-                    ->label('Close')
-                    ->color('gray')
-                    ->close(),
-                $this->markCategoryReviewedFooterAction(),
-                Action::make('viewCategoryEdit')
-                    ->label('Edit')
-                    ->visible(fn (): bool => (bool) $this->viewingCategoryId && $this->canPageAction(PermissionAction::Update))
-                    ->action(function (): void {
-                        $categoryId = $this->viewingCategoryId;
-                        $this->unmountAction();
-                        $this->openEditCategory((int) $categoryId);
-                    }),
-                Action::make('viewCategoryPrint')
-                    ->label('Print Review (Recommended)')
-                    ->icon('heroicon-o-printer')
-                    ->color('primary')
-                    ->extraAttributes(['class' => 'agricart-no-print'])
-                    ->visible(fn (): bool => (bool) $this->viewingCategoryId && $this->canPageAction(PermissionAction::Print))
-                    ->action(fn (): mixed => $this->printCategoryReview()),
-                Action::make('viewCategoryExport')
-                    ->label('Export for Review')
-                    ->outlined()
-                    ->extraAttributes(['class' => 'agricart-no-print'])
-                    ->visible(fn (): bool => (bool) $this->viewingCategoryId && $this->canPageAction(PermissionAction::Export))
-                    ->action(function (): void {
-                        $this->contentAuditCategoryId = $this->viewingCategoryId;
-                        $this->mountAction('exportCategoryReview');
-                        $this->halt();
-                    }),
-            ]);
+            ->modalFooterActions($this->categoryViewModalFooterActions());
+    }
+
+    /**
+     * @return list<Action>
+     */
+    protected function categoryViewModalFooterActions(): array
+    {
+        $actions = [
+            Action::make('closeViewCategory')
+                ->label('Close')
+                ->color('gray')
+                ->close(),
+        ];
+
+        if (method_exists($this, 'markCategoryReviewedFooterAction')) {
+            $actions[] = $this->markCategoryReviewedFooterAction();
+        }
+
+        if (method_exists($this, 'openEditCategory')) {
+            $actions[] = Action::make('viewCategoryEdit')
+                ->label('Edit')
+                ->visible(fn (): bool => (bool) $this->viewingCategoryId && $this->canPageAction(PermissionAction::Update))
+                ->action(function (): void {
+                    $categoryId = $this->viewingCategoryId;
+                    $this->unmountAction();
+                    $this->openEditCategory((int) $categoryId);
+                });
+        }
+
+        if (method_exists($this, 'printCategoryReview')) {
+            $actions[] = Action::make('viewCategoryPrint')
+                ->label('Print Review (Recommended)')
+                ->icon('heroicon-o-printer')
+                ->color('primary')
+                ->extraAttributes(['class' => 'agricart-no-print'])
+                ->visible(fn (): bool => (bool) $this->viewingCategoryId && $this->canPageAction(PermissionAction::Print))
+                ->action(fn (): mixed => $this->printCategoryReview());
+        }
+
+        if (method_exists($this, 'promptExportCategoryReview')) {
+            $actions[] = Action::make('viewCategoryExport')
+                ->label('Export for Review')
+                ->outlined()
+                ->extraAttributes(['class' => 'agricart-no-print'])
+                ->visible(fn (): bool => (bool) $this->viewingCategoryId && $this->canPageAction(PermissionAction::Export))
+                ->action(function (): void {
+                    $this->contentAuditCategoryId = $this->viewingCategoryId;
+                    $this->mountAction('exportCategoryReview');
+                    $this->halt();
+                });
+        }
+
+        return $actions;
     }
 
     public function getViewingCategoryProperty(): ?Category

@@ -4,6 +4,7 @@ namespace App\Modules\Catalog\Services;
 
 use App\Core\Ai\Services\AiContentStatusManager;
 use App\Models\Catalog\Category;
+use App\Models\Catalog\CategoryDeletionRequest;
 use App\Models\User;
 use App\Modules\Catalog\Support\CategoryAiContentSchema;
 use Illuminate\Http\UploadedFile;
@@ -72,16 +73,27 @@ final class CategoryManager
         return $category->refresh();
     }
 
+    public static function requestDeletion(Category $category, User $requestedBy, ?string $reason = null): CategoryDeletionRequest
+    {
+        return CategoryDeletionService::requestDeletion($category, $requestedBy, $reason);
+    }
+
+    /**
+     * @deprecated Use CategoryDeletionService via requestDeletion() and the approvals workflow.
+     */
     public static function delete(Category $category): void
     {
-        if ($category->children()->exists()) {
-            throw ValidationException::withMessages([
-                'category' => 'This category has child categories and cannot be deleted.',
-            ]);
-        }
+        throw ValidationException::withMessages([
+            'category' => 'Categories cannot be deleted directly. Submit a deletion request for approval.',
+        ]);
+    }
 
-        CategoryImageStorage::deleteIfExists($category->image_path);
-        $category->delete();
+    /**
+     * @return list<int>
+     */
+    public static function descendantIdsFor(int $categoryId): array
+    {
+        return self::descendantIds($categoryId);
     }
 
     public static function approveContentReview(Category $category, User $reviewer): Category

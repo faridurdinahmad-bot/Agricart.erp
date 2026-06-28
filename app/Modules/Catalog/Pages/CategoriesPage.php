@@ -10,6 +10,7 @@ use App\Models\Catalog\Category;
 use App\Modules\Catalog\Clusters\CatalogCluster;
 use App\Modules\Catalog\Concerns\InteractsWithCategoryContentAuditExport;
 use App\Modules\Catalog\Concerns\InteractsWithCategoryContentReview;
+use App\Modules\Catalog\Concerns\InteractsWithCategoryDeletionRequests;
 use App\Modules\Catalog\Concerns\InteractsWithCategoryForm;
 use App\Modules\Catalog\Concerns\InteractsWithCategoryView;
 use App\Modules\Catalog\Navigation\CatalogNavigation;
@@ -27,7 +28,7 @@ use Livewire\Attributes\Computed;
 
 class CategoriesPage extends BaseModulePage
 {
-    use AuthorizesPageActions, HandlesCrudModal, InteractsWithCategoryContentAuditExport, InteractsWithCategoryContentReview, InteractsWithCategoryForm, InteractsWithCategoryView;
+    use AuthorizesPageActions, HandlesCrudModal, InteractsWithCategoryContentAuditExport, InteractsWithCategoryContentReview, InteractsWithCategoryDeletionRequests, InteractsWithCategoryForm, InteractsWithCategoryView;
 
     protected static ?string $cluster = CatalogCluster::class;
 
@@ -205,6 +206,19 @@ class CategoriesPage extends BaseModulePage
     public function openEditCategory(int $categoryId): void
     {
         $this->authorizePageAction(PermissionAction::Update);
+
+        $category = Category::query()->findOrFail($categoryId);
+
+        if ($category->isPendingDeletion()) {
+            Notification::make()
+                ->title('Category pending deletion')
+                ->body('This category cannot be edited while a deletion request is pending approval.')
+                ->warning()
+                ->send();
+
+            return;
+        }
+
         $this->loadCategoryForEdit($categoryId);
         unset($this->categoryParentOptions, $this->categoryBreadcrumbPath);
         $this->mountAction('categoryForm');
@@ -300,6 +314,17 @@ class CategoriesPage extends BaseModulePage
         $this->authorizePageAction(PermissionAction::Create);
 
         $source = Category::query()->findOrFail($categoryId);
+
+        if ($source->isPendingDeletion()) {
+            Notification::make()
+                ->title('Category pending deletion')
+                ->body('Cannot duplicate a category that is pending deletion.')
+                ->warning()
+                ->send();
+
+            return;
+        }
+
         $duplicate = CategoryManager::duplicate($source);
 
         unset(
@@ -320,30 +345,7 @@ class CategoriesPage extends BaseModulePage
 
     public function deleteCategory(int $categoryId): void
     {
-        $this->authorizePageAction(PermissionAction::Delete);
-
-        try {
-            $category = Category::query()->findOrFail($categoryId);
-            CategoryManager::delete($category);
-
-            unset($this->categoryTree, $this->flatCategories, $this->categoryParentOptions, $this->filteredCategories, $this->paginatedCategories, $this->categoryListMeta);
-
-            if ($this->editingCategoryId === $categoryId) {
-                $this->resetCategoryForm();
-            }
-
-            if ($this->viewingCategoryId === $categoryId) {
-                $this->viewingCategoryId = null;
-            }
-
-            Notification::make()->title('Category deleted')->success()->send();
-        } catch (ValidationException $exception) {
-            Notification::make()
-                ->title('Cannot delete category')
-                ->body(collect($exception->errors())->flatten()->first() ?? 'This category cannot be deleted.')
-                ->warning()
-                ->send();
-        }
+        $this->openRequestDeletionModal($categoryId);
     }
 
     public function content(Schema $schema): Schema

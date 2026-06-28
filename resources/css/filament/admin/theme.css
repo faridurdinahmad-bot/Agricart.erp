@@ -3374,3 +3374,76 @@ select.agricart-ai-prompt-template-form__control {
     color: rgb(71 85 105);
     background: rgb(248 250 252);
 }
+
+.agricart-category-deletion-impact__summary {
+    margin-bottom: 1rem;
+}
+
+.agricart-category-deletion-impact__reason,
+.agricart-category-deletion-impact__meta {
+    margin: 0.375rem 0 0;
+    font-size: 0.875rem;
+    color: rgb(71 85 105);
+}
+
+.agricart-category-deletion-impact__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.agricart-category-deletion-impact__stat {
+    padding: 0.75rem;
+    border: 1px solid rgb(226 232 240);
+    border-radius: 0.5rem;
+    background: rgb(248 250 252);
+    text-align: center;
+}
+
+.agricart-category-deletion-impact__stat-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: rgb(15 23 42);
+}
+
+.agricart-category-deletion-impact__stat-label {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: rgb(100 116 139);
+}
+
+.agricart-category-deletion-impact__blockers,
+.agricart-category-deletion-impact__warnings,
+.agricart-category-deletion-impact__hierarchy {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.agricart-category-deletion-impact__blockers {
+    background: rgb(254 242 242);
+    border: 1px solid rgb(254 202 202);
+}
+
+.agricart-category-deletion-impact__warnings,
+.agricart-category-deletion-impact__hierarchy {
+    background: rgb(255 251 235);
+    border: 1px solid rgb(253 230 138);
+}
+
+.agricart-category-deletion-impact__blockers h4,
+.agricart-category-deletion-impact__warnings h4,
+.agricart-category-deletion-impact__hierarchy h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.agricart-category-deletion-impact__blockers ul,
+.agricart-category-deletion-impact__warnings ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}

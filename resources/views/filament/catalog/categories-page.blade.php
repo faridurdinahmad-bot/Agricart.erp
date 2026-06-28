@@ -64,13 +64,19 @@
                         <td dir="rtl" lang="ur">{{ $category->name_ur }}</td>
                         <td>{{ $category->display_order }}</td>
                         <td>
-                            <span @class([
-                                'agricart-users-list__badge',
-                                'agricart-users-list__badge--active' => $category->is_active,
-                                'agricart-users-list__badge--inactive' => ! $category->is_active,
-                            ])>
-                                {{ $category->is_active ? 'Active' : 'Inactive' }}
-                            </span>
+                            @if ($category->isPendingDeletion())
+                                <span class="agricart-users-list__badge agricart-users-list__badge--pending">
+                                    Pending Deletion
+                                </span>
+                            @else
+                                <span @class([
+                                    'agricart-users-list__badge',
+                                    'agricart-users-list__badge--active' => $category->is_active,
+                                    'agricart-users-list__badge--inactive' => ! $category->is_active,
+                                ])>
+                                    {{ $category->is_active ? 'Active' : 'Inactive' }}
+                                </span>
+                            @endif
                         </td>
                         <td>
                             <span @class(['agricart-users-list__badge', $category->aiStatusBadgeClass()])>
@@ -81,6 +87,7 @@
                             @include('filament.catalog.partials.category-row-actions', [
                                 'categoryId' => $category->id,
                                 'awaitingReview' => $category->awaitingContentReview(),
+                                'isPendingDeletion' => $category->isPendingDeletion(),
                             ])
                         </td>
                     </tr>

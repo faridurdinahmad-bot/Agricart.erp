@@ -4,14 +4,19 @@ namespace App\Models\Catalog;
 
 use App\Core\Ai\Concerns\HasAiContentStatus;
 use App\Core\Ai\Enums\AiContentStatus;
+use App\Core\Deletion\Enums\EntityDeletionRequestStatus;
 use App\Models\User;
+use App\Modules\Catalog\Enums\CategoryLifecycleStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
     use HasAiContentStatus;
+    use SoftDeletes;
 
     protected $table = 'catalog_categories';
 
@@ -24,6 +29,7 @@ class Category extends Model
         'hs_code',
         'display_order',
         'is_active',
+        'lifecycle_status',
         'ai_content_status',
         'content_reviewed_at',
         'content_reviewed_by',
@@ -64,9 +70,29 @@ class Category extends Model
         return [
             'is_active' => 'boolean',
             'display_order' => 'integer',
+            'lifecycle_status' => CategoryLifecycleStatus::class,
             'last_ai_generated_at' => 'datetime',
             'content_reviewed_at' => 'datetime',
         ];
+    }
+
+    public function isPendingDeletion(): bool
+    {
+        return $this->lifecycle_status === CategoryLifecycleStatus::PendingDeletion;
+    }
+
+    public function lifecycleStatusLabel(): string
+    {
+        return $this->lifecycle_status?->label() ?? CategoryLifecycleStatus::Active->label();
+    }
+
+    public function lifecycleStatusBadgeClass(): string
+    {
+        return match ($this->lifecycle_status) {
+            CategoryLifecycleStatus::PendingDeletion => 'agricart-users-list__badge--pending',
+            CategoryLifecycleStatus::Deleted => 'agricart-users-list__badge--inactive',
+            default => 'agricart-users-list__badge--active',
+        };
     }
 
     public function awaitingContentReview(): bool
@@ -116,6 +142,24 @@ class Category extends Model
     public function urlRedirects(): HasMany
     {
         return $this->hasMany(CategoryUrlRedirect::class, 'category_id')->orderByDesc('changed_at');
+    }
+
+    /**
+     * @return HasMany<CategoryDeletionRequest, $this>
+     */
+    public function deletionRequests(): HasMany
+    {
+        return $this->hasMany(CategoryDeletionRequest::class, 'category_id')->orderByDesc('requested_at');
+    }
+
+    /**
+     * @return HasOne<CategoryDeletionRequest, $this>
+     */
+    public function pendingDeletionRequest(): HasOne
+    {
+        return $this->hasOne(CategoryDeletionRequest::class, 'category_id')
+            ->where('status', EntityDeletionRequestStatus::Pending)
+            ->latestOfMany('requested_at');
     }
 
     public function lastAiGeneratedLabel(): string

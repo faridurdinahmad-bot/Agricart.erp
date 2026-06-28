@@ -10,7 +10,7 @@ class SyncAgricartPermissionsCommand extends Command
 {
     protected $signature = 'agricart:sync-permissions';
 
-    protected $description = 'Sync permission definitions and ensure the Super Admin role exists.';
+    protected $description = 'Force-sync permission definitions and ensure the Super Admin role exists.';
 
     public function handle(): int
     {

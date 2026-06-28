@@ -20,13 +20,12 @@ Copy this folder to `app/Modules/{ModuleName}/` and replace all placeholders.
 3. Replace placeholders in every file
 4. Add submenu pages under `Pages/` (extend `BaseModulePage`)
 5. Register sort constants in `Navigation/{ModuleName}Navigation.php`
-6. Register module in `AppServiceProvider`:
+6. Assign a unique `navigationSort` on the cluster using `ModuleNavigationSort::NEXT_AVAILABLE` (increment for each module)
 
-```php
-ModuleRegistry::register(ProductsModule::class);
-```
+Permissions sync **automatically** when pages are added or removed. Use `php artisan agricart:sync-permissions` only to force a manual resync.
 
-7. Assign a unique `navigationSort` on the cluster using `ModuleNavigationSort::NEXT_AVAILABLE` (increment for each module)
+Modules are **auto-discovered** from `app/Modules/{ModuleName}/{ModuleName}Module.php`.
+No registration in `AppServiceProvider` is required.
 
 ## Font & theme
 

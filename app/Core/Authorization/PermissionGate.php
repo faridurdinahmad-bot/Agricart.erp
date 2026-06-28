@@ -9,11 +9,17 @@ use App\Models\Role;
 use App\Models\User;
 use Filament\Clusters\Cluster;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use ReflectionClass;
 
 final class PermissionGate
 {
+    private const FINGERPRINT_CACHE_KEY = 'agricart.permission-catalog-fingerprint';
+
+    private const SYNC_LOCK_KEY = 'agricart.permission-sync';
+
     public static function forUser(?User $user): self
     {
         return new self($user);
@@ -114,11 +120,50 @@ final class PermissionGate
         }
     }
 
+    /**
+     * Fingerprint of the current permission catalog (module pages × actions).
+     */
+    public static function catalogFingerprint(): string
+    {
+        return hash('xxh128', implode("\n", PermissionCatalog::allKeys()));
+    }
+
+    /**
+     * Sync permission rows when the catalog has changed since the last sync.
+     *
+     * Safe to call on every application boot — exits immediately when nothing changed.
+     */
+    public static function syncIfStale(): void
+    {
+        if (! Schema::hasTable('permissions')) {
+            return;
+        }
+
+        $fingerprint = static::catalogFingerprint();
+
+        if (Cache::get(static::FINGERPRINT_CACHE_KEY) === $fingerprint) {
+            return;
+        }
+
+        Cache::lock(static::SYNC_LOCK_KEY, 30)->block(5, function () use ($fingerprint): void {
+            if (Cache::get(static::FINGERPRINT_CACHE_KEY) === $fingerprint) {
+                return;
+            }
+
+            static::syncDefinitions();
+        });
+    }
+
+    public static function rememberCatalogFingerprint(): void
+    {
+        Cache::forever(static::FINGERPRINT_CACHE_KEY, static::catalogFingerprint());
+    }
+
     public static function syncDefinitions(): void
     {
         foreach (PermissionCatalog::entries() as $entry) {
             foreach (PermissionAction::all() as $action) {
-                Permission::query()->updateOrCreate(
+                Permission::query()->firstOrCreate(
                     ['key' => PermissionCatalog::key($entry['module'], $entry['page'], $action)],
                     [
                         'module' => $entry['module'],
@@ -130,6 +175,7 @@ final class PermissionGate
         }
 
         self::migrateLegacyPermissionKeys();
+        self::rememberCatalogFingerprint();
     }
 
     /**

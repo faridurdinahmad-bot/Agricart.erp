@@ -11,7 +11,7 @@ final class RoleManager
 {
     public static function ensureSuperAdminRole(): Role
     {
-        PermissionGate::syncDefinitions();
+        PermissionGate::syncIfStale();
 
         $role = Role::query()->firstOrCreate(
             ['slug' => PermissionCatalog::SUPER_ADMIN_SLUG],

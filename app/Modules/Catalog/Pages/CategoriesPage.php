@@ -216,6 +216,8 @@ class CategoriesPage extends BaseModulePage
             ->modalWidth(Width::FiveExtraLarge)
             ->modalContent(fn (): \Illuminate\Contracts\View\View => view('filament.catalog.category-form', [
                 'live' => true,
+                'categorySlugDisplay' => $this->categorySlugDisplay,
+                'categoryCanonicalDisplay' => $this->categoryCanonicalDisplay,
             ]))
             ->stickyModalFooter()
             ->modalFooterActions([
@@ -252,10 +254,10 @@ class CategoriesPage extends BaseModulePage
 
             if ($this->editingCategoryId) {
                 $category = Category::query()->findOrFail($this->editingCategoryId);
-                CategoryManager::update($category, $payload, $image);
+                CategoryManager::update($category, $payload, $image, auth()->user());
                 $message = 'Category updated successfully.';
             } else {
-                CategoryManager::create($payload, $image);
+                CategoryManager::create($payload, $image, auth()->user());
                 $message = 'Category created successfully.';
             }
 

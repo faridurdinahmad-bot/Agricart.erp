@@ -2,6 +2,8 @@
 @if ($live ?? false)
     @php
         $categoryCodeDisplay = $this->categoryCodeDisplay;
+        $categorySlugDisplay = $this->categorySlugDisplay;
+        $categoryCanonicalDisplay = $this->categoryCanonicalDisplay;
         $lastAiGeneratedDisplay = $this->lastAiGeneratedDisplay;
         $categoryAiPromptOpen = $this->categoryAiPromptOpen;
     @endphp
@@ -153,16 +155,42 @@
         <input id="category_meta_keywords" type="text" class="agricart-category-form__control" placeholder="keyword-one, keyword-two" @unless($live ?? false) x-model="metaKeywords" @endunless @if($live ?? false) wire:model="categoryForm.meta_keywords" @endif>
     </div>
 
-    <div class="agricart-category-form__field">
-        <label class="agricart-category-form__label" for="category_url_slug">URL Slug</label>
-        <input id="category_url_slug" type="text" class="agricart-category-form__control" placeholder="category-url-slug" @unless($live ?? false) x-model="urlSlug" @endunless @if($live ?? false) wire:model="categoryForm.url_slug" @endif>
+    <div class="agricart-category-form__grid agricart-category-form__grid--2">
+        <div class="agricart-category-form__field">
+            <label class="agricart-category-form__label" for="category_url_slug">URL Slug</label>
+            <input
+                id="category_url_slug"
+                type="text"
+                class="agricart-category-form__control agricart-category-form__control--readonly"
+                readonly
+                disabled
+                @if($live ?? false)
+                    value="{{ $categorySlugDisplay ?? 'Generated automatically on save' }}"
+                @else
+                    value="Generated automatically on save"
+                @endif
+            >
+            <p class="agricart-category-form__hint">System-generated from the English name when saved.</p>
+        </div>
+        <div class="agricart-category-form__field">
+            <label class="agricart-category-form__label" for="category_canonical_url">Canonical URL</label>
+            <input
+                id="category_canonical_url"
+                type="text"
+                class="agricart-category-form__control agricart-category-form__control--readonly"
+                readonly
+                disabled
+                @if($live ?? false)
+                    value="{{ $categoryCanonicalDisplay ?? 'Generated automatically on save' }}"
+                @else
+                    value="Generated automatically on save"
+                @endif
+            >
+            <p class="agricart-category-form__hint">System-generated storefront URL. Never typed manually.</p>
+        </div>
     </div>
 
     <div class="agricart-category-form__grid agricart-category-form__grid--2">
-        <div class="agricart-category-form__field">
-            <label class="agricart-category-form__label" for="category_canonical_url">Canonical URL</label>
-            <input id="category_canonical_url" type="url" class="agricart-category-form__control" placeholder="https://agricart.test/categories/example" @unless($live ?? false) x-model="canonicalUrl" @endunless @if($live ?? false) wire:model="categoryForm.canonical_url" @endif>
-        </div>
         <div class="agricart-category-form__field">
             <label class="agricart-category-form__label" for="category_meta_robots">Meta Robots</label>
             <select id="category_meta_robots" class="agricart-category-form__control" @unless($live ?? false) x-model="metaRobots" @endunless @if($live ?? false) wire:model="categoryForm.meta_robots" @endif>

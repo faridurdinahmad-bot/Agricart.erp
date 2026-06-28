@@ -7,12 +7,14 @@ use App\Core\Ai\Enums\AiTaskType;
 use App\Core\Authorization\Enums\PermissionAction;
 use App\Core\ContentAudit\Support\PromptAuditMetadataResolver;
 use App\Models\Catalog\Category;
+use App\Models\Catalog\CategoryUrlRedirect;
 use App\Modules\Catalog\ContentAudit\Support\CategoryImageMetadataResolver;
 use App\Modules\Catalog\Services\CategoryImageStorage;
 use App\Modules\Catalog\Services\CategoryManager;
 use Filament\Actions\Action;
 use Filament\Support\Enums\Width;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 
 trait InteractsWithCategoryView
 {
@@ -36,6 +38,7 @@ trait InteractsWithCategoryView
                 'imageUrl' => CategoryImageStorage::url($this->viewingCategory?->image_path),
                 'imageDetails' => $this->viewingCategoryImageDetails,
                 'promptInfo' => $this->viewingCategoryPromptInfo,
+                'urlRedirects' => $this->viewingCategoryUrlRedirects,
             ]))
             ->modalFooterActions([
                 Action::make('closeViewCategory')
@@ -77,7 +80,15 @@ trait InteractsWithCategoryView
             return null;
         }
 
-        return Category::query()->find($this->viewingCategoryId);
+        return Category::query()->with(['urlRedirects.changedByUser'])->find($this->viewingCategoryId);
+    }
+
+    /**
+     * @return Collection<int, CategoryUrlRedirect>
+     */
+    public function getViewingCategoryUrlRedirectsProperty(): Collection
+    {
+        return $this->viewingCategory?->urlRedirects ?? collect();
     }
 
     /**

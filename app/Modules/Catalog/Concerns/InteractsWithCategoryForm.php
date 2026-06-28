@@ -28,6 +28,10 @@ trait InteractsWithCategoryForm
 
     public string $categoryCodeDisplay = '';
 
+    public string $categoryCanonicalDisplay = 'Generated automatically on save';
+
+    public string $categorySlugDisplay = 'Generated automatically on save';
+
     public string $lastAiGeneratedDisplay = 'Not generated yet';
 
     public bool $categoryParentSearchOpen = false;
@@ -45,6 +49,8 @@ trait InteractsWithCategoryForm
         $this->categoryImage = null;
         $this->existingCategoryImageUrl = null;
         $this->categoryCodeDisplay = '';
+        $this->categorySlugDisplay = 'Generated automatically on save';
+        $this->categoryCanonicalDisplay = 'Generated automatically on save';
         $this->lastAiGeneratedDisplay = 'Not generated yet';
         $this->categoryParentSearchOpen = false;
         $this->categoryAdditionalOpen = false;
@@ -62,6 +68,8 @@ trait InteractsWithCategoryForm
         $this->categoryImage = null;
         $this->existingCategoryImageUrl = CategoryImageStorage::url($category->image_path);
         $this->categoryCodeDisplay = $category->code;
+        $this->categorySlugDisplay = filled($category->url_slug) ? $category->url_slug : 'Generated automatically on save';
+        $this->categoryCanonicalDisplay = filled($category->canonical_url) ? $category->canonical_url : 'Generated automatically on save';
         $this->lastAiGeneratedDisplay = $category->lastAiGeneratedLabel();
     }
 
@@ -92,8 +100,6 @@ trait InteractsWithCategoryForm
             'categoryForm.seo_focus_keyword_ur' => ['nullable', 'string', 'max:255'],
             'categoryForm.meta_description' => ['nullable', 'string'],
             'categoryForm.meta_keywords' => ['nullable', 'string', 'max:500'],
-            'categoryForm.url_slug' => ['nullable', 'string', 'max:255'],
-            'categoryForm.canonical_url' => ['nullable', 'url', 'max:500'],
             'categoryForm.meta_robots' => ['nullable', 'string', 'max:100'],
             'categoryForm.og_title' => ['nullable', 'string', 'max:255'],
             'categoryForm.og_description' => ['nullable', 'string'],
@@ -136,8 +142,6 @@ trait InteractsWithCategoryForm
             'seo_focus_keyword_ur' => '',
             'meta_description' => '',
             'meta_keywords' => '',
-            'url_slug' => '',
-            'canonical_url' => '',
             'meta_robots' => 'index, follow',
             'og_title' => '',
             'og_description' => '',
@@ -177,8 +181,6 @@ trait InteractsWithCategoryForm
             'seo_focus_keyword_ur' => $category->seo_focus_keyword_ur ?? '',
             'meta_description' => $category->meta_description ?? '',
             'meta_keywords' => $category->meta_keywords ?? '',
-            'url_slug' => $category->url_slug ?? '',
-            'canonical_url' => $category->canonical_url ?? '',
             'meta_robots' => $category->meta_robots ?? 'index, follow',
             'og_title' => $category->og_title ?? '',
             'og_description' => $category->og_description ?? '',
@@ -200,10 +202,6 @@ trait InteractsWithCategoryForm
         $parentId = filled($validated['parent_id'] ?? null)
             ? (int) $validated['parent_id']
             : null;
-
-        $slug = filled($validated['url_slug'] ?? null)
-            ? Str::slug($validated['url_slug'])
-            : Str::slug($validated['english_name']);
 
         return [
             'parent_id' => $parentId,
@@ -227,8 +225,6 @@ trait InteractsWithCategoryForm
             'seo_focus_keyword_ur' => self::nullableString($validated['seo_focus_keyword_ur'] ?? null),
             'meta_description' => self::nullableString($validated['meta_description'] ?? null),
             'meta_keywords' => self::nullableString($validated['meta_keywords'] ?? null),
-            'url_slug' => $slug,
-            'canonical_url' => self::nullableString($validated['canonical_url'] ?? null),
             'meta_robots' => $validated['meta_robots'] ?? 'index, follow',
             'og_title' => self::nullableString($validated['og_title'] ?? null),
             'og_description' => self::nullableString($validated['og_description'] ?? null),
@@ -265,10 +261,6 @@ trait InteractsWithCategoryForm
 
         $baseName = pathinfo($this->categoryImage->getClientOriginalName(), PATHINFO_FILENAME);
         $this->categoryForm['english_name'] = Str::title(str_replace(['-', '_'], ' ', $baseName));
-
-        if (! filled($this->categoryForm['url_slug'] ?? null)) {
-            $this->categoryForm['url_slug'] = Str::slug($baseName);
-        }
     }
 
     public function updatedCategoryFormParentId(): void

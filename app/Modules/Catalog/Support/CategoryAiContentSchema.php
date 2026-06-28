@@ -28,7 +28,6 @@ final class CategoryAiContentSchema
             new AiFieldDefinition('seo_focus_keyword_ur', maxLength: 255),
             new AiFieldDefinition('meta_description'),
             new AiFieldDefinition('meta_keywords', required: false, maxLength: 500),
-            new AiFieldDefinition('url_slug', maxLength: 255),
             new AiFieldDefinition('og_title', required: false, maxLength: 255),
             new AiFieldDefinition('og_description', required: false),
             new AiFieldDefinition('synonyms_en', required: false, maxLength: 500),

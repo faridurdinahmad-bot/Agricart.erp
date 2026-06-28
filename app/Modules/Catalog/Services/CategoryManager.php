@@ -15,7 +15,7 @@ final class CategoryManager
     /**
      * @param  array<string, mixed>  $data
      */
-    public static function create(array $data, ?UploadedFile $image = null): Category
+    public static function create(array $data, ?UploadedFile $image = null, ?User $changedBy = null): Category
     {
         self::assertUniqueNameUnderParent($data['name_en'], $data['parent_id'] ?? null);
 
@@ -30,6 +30,8 @@ final class CategoryManager
             ]);
         }
 
+        CategoryCanonicalUrlService::syncAfterSave($category->refresh(), [], $changedBy, isCreate: true);
+
         AiContentStatusManager::markPendingIfAiFieldsEmpty($category->refresh(), self::aiContentFieldKeys());
 
         return $category->refresh();
@@ -38,7 +40,7 @@ final class CategoryManager
     /**
      * @param  array<string, mixed>  $data
      */
-    public static function update(Category $category, array $data, ?UploadedFile $image = null): Category
+    public static function update(Category $category, array $data, ?UploadedFile $image = null, ?User $changedBy = null): Category
     {
         self::assertUniqueNameUnderParent(
             $data['name_en'],
@@ -48,6 +50,13 @@ final class CategoryManager
 
         self::assertValidParent($category, $data['parent_id'] ?? null);
 
+        $previous = [
+            'name_en' => $category->name_en,
+            'parent_id' => $category->parent_id,
+            'url_slug' => $category->url_slug,
+            'canonical_url' => $category->canonical_url,
+        ];
+
         $category->update(self::mappedAttributes($data));
 
         if ($image) {
@@ -55,6 +64,8 @@ final class CategoryManager
                 'image_path' => CategoryImageStorage::store($category, $image),
             ]);
         }
+
+        CategoryCanonicalUrlService::syncAfterSave($category->refresh(), $previous, $changedBy);
 
         AiContentStatusManager::markPendingIfAiFieldsEmpty($category->refresh(), self::aiContentFieldKeys());
 
@@ -136,6 +147,8 @@ final class CategoryManager
         }
 
         AiContentStatusManager::markNeedsReview($category->refresh());
+
+        CategoryCanonicalUrlService::syncAfterSave($category->refresh(), [], null, isCreate: true);
 
         return $category->refresh();
     }
@@ -318,7 +331,6 @@ final class CategoryManager
             'seo_focus_keyword_ur',
             'meta_description',
             'meta_keywords',
-            'url_slug',
             'synonyms_en',
             'synonyms_ur',
             'alternate_spellings',
@@ -353,8 +365,6 @@ final class CategoryManager
             'seo_focus_keyword_ur' => $data['seo_focus_keyword_ur'] ?? null,
             'meta_description' => $data['meta_description'] ?? null,
             'meta_keywords' => $data['meta_keywords'] ?? null,
-            'url_slug' => $data['url_slug'] ?? null,
-            'canonical_url' => $data['canonical_url'] ?? null,
             'meta_robots' => $data['meta_robots'] ?? 'index, follow',
             'og_title' => $data['og_title'] ?? null,
             'og_description' => $data['og_description'] ?? null,

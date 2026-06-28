@@ -50,7 +50,7 @@ class AiPromptTemplateSeeder extends Seeder
                     ."Required keys: {{required_keys}}.\n"
                     ."The name_ur field MUST be the full category name written in Urdu script (not English transliteration).\n"
                     ."Optional keys (include when relevant): {{optional_keys}}.\n"
-                    .'All values must be plain strings. url_slug must be lowercase with hyphens only.',
+                    .'All values must be plain strings.',
                 'available_variables' => AiPromptVariableRegistry::forTaskType(AiTaskType::CategoryContent),
             ],
             [

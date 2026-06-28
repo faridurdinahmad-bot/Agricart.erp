@@ -7,6 +7,7 @@
     $imageUrl = $imageUrl ?? null;
     $imageDetails = $imageDetails ?? [];
     $promptInfo = $promptInfo ?? [];
+    $urlRedirects = $urlRedirects ?? collect();
 @endphp
 
 @if (! $category)
@@ -100,6 +101,33 @@
             'Open Graph Description' => $display($category->og_description),
         ],
     ])
+
+    @if ($urlRedirects->isNotEmpty())
+        <section class="agricart-category-view__section">
+            <h3 class="agricart-category-view__section-title">URL Redirect History</h3>
+            <p class="agricart-category-view__hint">301 redirects recorded when the canonical URL changed.</p>
+            <table class="agricart-category-view__redirect-table">
+                <thead>
+                    <tr>
+                        <th>Old URL</th>
+                        <th>New URL</th>
+                        <th>Changed At</th>
+                        <th>Changed By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($urlRedirects as $redirect)
+                        <tr>
+                            <td>{{ $redirect->old_url }}</td>
+                            <td>{{ $redirect->new_url }}</td>
+                            <td>{{ $redirect->changed_at?->format('d M Y, H:i') ?? '—' }}</td>
+                            <td>{{ $redirect->changedByUser?->name ?? 'System' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </section>
+    @endif
 
     @include('filament.catalog.partials.category-view-section', [
         'title' => 'Search',

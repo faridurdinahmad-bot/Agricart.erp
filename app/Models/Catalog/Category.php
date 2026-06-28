@@ -110,6 +110,14 @@ class Category extends Model
         return $this->hasMany(self::class, 'parent_id')->orderBy('display_order')->orderBy('name_en');
     }
 
+    /**
+     * @return HasMany<CategoryUrlRedirect, $this>
+     */
+    public function urlRedirects(): HasMany
+    {
+        return $this->hasMany(CategoryUrlRedirect::class, 'category_id')->orderByDesc('changed_at');
+    }
+
     public function lastAiGeneratedLabel(): string
     {
         if (! $this->last_ai_generated_at) {

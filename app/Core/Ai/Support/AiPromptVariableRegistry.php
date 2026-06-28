@@ -37,6 +37,11 @@ final class AiPromptVariableRegistry
                 '{{urdu_name}}',
                 '{{brand}}',
                 '{{image}}',
+                '{{short_note}}',
+                '{{assigned_categories}}',
+                '{{category}}',
+                '{{required_keys}}',
+                '{{optional_keys}}',
             ],
             AiTaskType::AttributeContent => [
                 '{{english_name}}',
@@ -99,7 +104,7 @@ final class AiPromptVariableRegistry
         $aliases = [
             'english_name' => ['name_en', 'english_name'],
             'urdu_name' => ['name_ur', 'urdu_name'],
-            'category' => ['category', 'category_name', 'name_en'],
+            'category' => ['category', 'category_name'],
             'brand' => ['brand', 'brand_name'],
             'product' => ['product', 'product_name', 'name_en'],
             'attributes' => ['attributes', 'attribute_list'],
@@ -132,6 +137,28 @@ final class AiPromptVariableRegistry
                 fn ($field) => $field->key,
                 array_filter(
                     CategoryAiContentSchema::fields(),
+                    fn ($field) => ! $field->required,
+                ),
+            ));
+        }
+
+        if ($taskType === AiTaskType::BrandContent) {
+            if (($values['brand'] ?? '') === '') {
+                $values['brand'] = $values['english_name'] ?? $values['name_en'] ?? '';
+            }
+
+            $values['required_keys'] ??= implode(', ', array_map(
+                fn ($field) => $field->key,
+                array_filter(
+                    \App\Modules\Catalog\Support\BrandAiContentSchema::fields(),
+                    fn ($field) => $field->required,
+                ),
+            ));
+
+            $values['optional_keys'] ??= implode(', ', array_map(
+                fn ($field) => $field->key,
+                array_filter(
+                    \App\Modules\Catalog\Support\BrandAiContentSchema::fields(),
                     fn ($field) => ! $field->required,
                 ),
             ));

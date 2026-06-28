@@ -23,6 +23,11 @@ class AiPromptTemplateSeeder extends Seeder
                 $template,
             );
         }
+
+        AiPromptTemplate::query()
+            ->where('task_type', AiTaskType::BrandContent)
+            ->where('target_module', AiTargetModule::Brands)
+            ->update(['is_active' => false]);
     }
 
     /**
@@ -73,17 +78,32 @@ class AiPromptTemplateSeeder extends Seeder
             ],
             [
                 'name' => 'Brand Content',
-                'target_module' => AiTargetModule::Brands,
+                'target_module' => AiTargetModule::Catalog,
                 'task_type' => AiTaskType::BrandContent,
                 'output_format' => AiPromptOutputFormat::Json,
                 'temperature' => 0.70,
                 'max_output_tokens' => 4096,
                 'is_active' => true,
-                'system_prompt' => 'You are an expert brand copywriter for Agricart ERP. '
-                    .'Respond with valid JSON only. Never wrap JSON in markdown.',
-                'user_prompt_template' => "Generate bilingual brand content for Agricart ERP.\n"
-                    ."Brand name (English): {{english_name}}\n\n"
-                    .'Return structured JSON suitable for brand records.',
+                'system_prompt' => 'You are an expert brand copywriter for the Agricart ERP product catalog. '
+                    .'Agricart ERP is the software platform — it is NEVER the brand you are writing about unless english_name explicitly says Agricart. '
+                    .'You MUST respond with valid JSON only. Never wrap JSON in markdown. '
+                    .'The english_name field is the ONLY authoritative brand identity. Never invent, translate, or substitute a different company name. '
+                    .'Only include country and website when you are highly confident — otherwise omit them or leave empty.',
+                'user_prompt_template' => "Write catalog content for this brand record.\n\n"
+                    ."AUTHORITATIVE brand name (English): {{english_name}}\n"
+                    ."Short note / extra context (does NOT replace the brand name): {{short_note}}\n"
+                    ."Assigned categories: {{assigned_categories}}\n\n"
+                    ."CRITICAL RULES:\n"
+                    ."- Every field must refer to the brand \"{{english_name}}\" only.\n"
+                    ."- NEVER use Agricart, Agri Cart, Agricart ERP, or ایگری کارڈ unless english_name is exactly that brand.\n"
+                    ."- short_note describes products or positioning — it does NOT change the brand name.\n"
+                    ."- name_ur must represent the SAME brand as english_name. For acronyms and short Latin names (e.g. AK, NSK), write Urdu-script letter names separated by spaces (e.g. AK → \"اے کے\").\n"
+                    ."- For established international brands with known Urdu spellings (e.g. Kubota → کوبوتا), use the conventional Urdu form.\n\n"
+                    ."Return ONLY a single JSON object. No markdown, no commentary, no code fences.\n"
+                    ."Required keys: {{required_keys}}.\n"
+                    ."Optional keys (include when relevant): {{optional_keys}}.\n"
+                    ."For country and website: only populate when confidently identifiable from the brand name and context. If unsure, omit or use empty string.\n"
+                    .'All values must be plain strings.',
                 'available_variables' => AiPromptVariableRegistry::forTaskType(AiTaskType::BrandContent),
             ],
             [

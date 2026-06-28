@@ -3447,3 +3447,167 @@ select.agricart-ai-prompt-template-form__control {
     margin: 0;
     padding-left: 1.25rem;
 }
+
+/* ── Catalog: Brand form (Phase 1 UI preview) ── */
+.fi-modal-window:has(.agricart-brand-form) .fi-modal-heading,
+.fi-modal-window:has(.agricart-brand-form) .fi-modal-header {
+    padding-bottom: 0.25rem !important;
+}
+
+.fi-modal-window:has(.agricart-brand-form) .fi-modal-content,
+.fi-modal-window:has(.agricart-brand-form) .fi-sc-modal-content {
+    padding-top: 0.375rem !important;
+}
+
+.fi-modal .agricart-brand-form,
+.fi-modal-window .agricart-brand-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: visible;
+    margin-top: -0.25rem;
+}
+
+.agricart-brand-form__names-stack {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.agricart-brand-form__logo-field {
+    flex-shrink: 0;
+}
+
+.agricart-brand-form__logo-box .agricart-brand-form__upload-box,
+.agricart-brand-form__logo-box .agricart-category-form__upload-box {
+    width: 7.5rem;
+    height: 7.5rem;
+    min-height: 7.5rem;
+    margin: 0;
+    border-radius: 0.5rem;
+    box-shadow: none;
+    border: 1px dashed var(--agricart-border);
+    background-color: color-mix(in oklab, var(--agricart-bg) 55%, var(--agricart-surface));
+}
+
+.agricart-brand-form__logo-box .agricart-staff-form-preview__file-text {
+    font-size: 0.625rem;
+    line-height: 1.25;
+    padding: 0.375rem;
+}
+
+.agricart-brand-form__logo-box .agricart-staff-form-preview__file-image,
+.agricart-brand-form__logo-box .agricart-category-form__upload-image {
+    width: 100%;
+    height: 100%;
+    min-height: 7.5rem;
+    max-height: 7.5rem;
+    object-fit: cover;
+}
+
+.agricart-brand-form__category-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.agricart-category-form__website-input {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+
+.agricart-category-form__website-protocol {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 7.25rem;
+    max-width: 9rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+    padding-right: 1.75rem;
+    font-size: 0.8125rem;
+}
+
+.agricart-category-form__website-domain {
+    flex: 1 1 auto;
+    min-width: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.agricart-brand-form__category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in oklab, var(--primary-500) 35%, var(--agricart-border));
+    background-color: color-mix(in oklab, var(--primary-500) 10%, var(--agricart-surface));
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.agricart-brand-form__category-chip-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    color: inherit;
+    font-size: 0.875rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.agricart-brand-form__category-chip-remove:hover {
+    opacity: 1;
+}
+
+.agricart-brand-form__assigned-categories {
+    position: relative;
+    z-index: 20;
+}
+
+.agricart-brand-form__assigned-categories .agricart-category-form__parent-search {
+    position: relative;
+    z-index: 20;
+}
+
+.agricart-brand-view__short-note {
+    margin: 0.5rem 0 0;
+    font-size: 0.8125rem;
+    color: var(--agricart-muted);
+    font-style: italic;
+}
+
+.agricart-users-list__preview-banner {
+    margin-bottom: 0.875rem;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid color-mix(in oklab, var(--primary-500) 35%, var(--agricart-border));
+    border-radius: 0.5rem;
+    background-color: color-mix(in oklab, var(--primary-500) 8%, var(--agricart-surface));
+    font-size: 0.8125rem;
+    color: inherit;
+}
+
+@media (max-width: 640px) {
+    .agricart-category-form__image-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .agricart-brand-form__names-stack {
+        width: 100%;
+    }
+}

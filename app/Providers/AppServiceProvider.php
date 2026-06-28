@@ -7,6 +7,7 @@ use App\Core\Ai\Support\AiResponseParser;
 use App\Core\Authorization\PermissionGate;
 use App\Core\Modules\ModuleRegistry;
 use App\Http\Responses\AgricartLoginResponse;
+use App\Modules\Catalog\Services\BrandAiContentService;
 use App\Modules\Catalog\Services\CategoryAiContentService;
 use Filament\Auth\Http\Responses\Contracts\LoginResponse;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(AiService::class);
         $this->app->singleton(AiResponseParser::class);
         $this->app->singleton(CategoryAiContentService::class);
+        $this->app->singleton(BrandAiContentService::class);
 
         ModuleRegistry::discover();
     }

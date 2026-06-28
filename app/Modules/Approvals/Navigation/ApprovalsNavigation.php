@@ -11,4 +11,6 @@ class ApprovalsNavigation
     public const STAFF_APPROVAL = 1;
 
     public const CATEGORY_DELETE_REQUESTS = 2;
+
+    public const BRAND_DELETE_REQUESTS = 3;
 }

@@ -7,6 +7,7 @@ use App\Models\Catalog\Category;
 use App\Modules\Catalog\Services\CategoryAiContentService;
 use App\Modules\Catalog\Services\CategoryImageStorage;
 use App\Modules\Catalog\Services\CategoryManager;
+use App\Modules\Catalog\Support\CatalogWebpImageSpec;
 use Filament\Notifications\Notification;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
@@ -78,7 +79,7 @@ trait InteractsWithCategoryForm
      */
     protected function validateCategoryForm(): array
     {
-        $validated = $this->validate([
+        $this->validate([
             'categoryForm.parent_id' => ['nullable', 'string'],
             'categoryForm.english_name' => ['required', 'string', 'max:255'],
             'categoryForm.urdu_name' => ['required', 'string', 'max:255'],
@@ -109,10 +110,10 @@ trait InteractsWithCategoryForm
             'categoryForm.search_aliases' => ['nullable', 'string', 'max:500'],
             'categoryForm.ai_prompt_override' => ['nullable', 'string'],
             'categoryForm.internal_tags' => ['nullable', 'string', 'max:500'],
-            'categoryImage' => ['nullable', 'image', 'max:5120'],
-        ])['categoryForm'];
+            'categoryImage' => CatalogWebpImageSpec::validationRules(),
+        ]);
 
-        return self::normalizeValidatedForm($validated);
+        return self::normalizeValidatedForm($this->categoryForm);
     }
 
     /**
@@ -258,6 +259,30 @@ trait InteractsWithCategoryForm
         if (! $this->categoryImage instanceof TemporaryUploadedFile) {
             return;
         }
+
+        if (! CatalogWebpImageSpec::isAllowedUpload($this->categoryImage)) {
+            $this->categoryImage = null;
+            $this->addError('categoryImage', CatalogWebpImageSpec::invalidTypeMessage());
+
+            return;
+        }
+
+        $validator = validator(
+            ['categoryImage' => $this->categoryImage],
+            ['categoryImage' => CatalogWebpImageSpec::validationRules()],
+            [
+                'categoryImage.max' => 'Category image must not exceed 5 MB.',
+            ],
+        );
+
+        if ($validator->fails()) {
+            $this->categoryImage = null;
+            $this->addError('categoryImage', (string) $validator->errors()->first('categoryImage'));
+
+            return;
+        }
+
+        $this->resetValidation('categoryImage');
 
         $baseName = pathinfo($this->categoryImage->getClientOriginalName(), PATHINFO_FILENAME);
         $this->categoryForm['english_name'] = Str::title(str_replace(['-', '_'], ' ', $baseName));

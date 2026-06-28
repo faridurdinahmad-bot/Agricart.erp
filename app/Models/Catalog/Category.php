@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Modules\Catalog\Enums\CategoryLifecycleStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -134,6 +135,16 @@ class Category extends Model
     public function children(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id')->orderBy('display_order')->orderBy('name_en');
+    }
+
+    /**
+     * @return BelongsToMany<Brand, $this>
+     */
+    public function brands(): BelongsToMany
+    {
+        return $this->belongsToMany(Brand::class, 'catalog_brand_category', 'category_id', 'brand_id')
+            ->withTimestamps()
+            ->orderBy('catalog_brands.name_en');
     }
 
     /**

@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/css/filament/admin/theme.css',
                 'resources/js/filament/admin/category-form.js',
+                'resources/js/filament/admin/brand-form.js',
                 'resources/js/print/agricart-print.js',
             ],
             refresh: true,

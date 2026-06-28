@@ -53,6 +53,9 @@
 
     @include('filament.catalog.partials.category-form-hierarchy-strip-live')
 
+    <p class="agricart-category-form__hint">{{ \App\Modules\Catalog\Support\CatalogWebpImageSpec::uploadHint() }}</p>
+    @error('categoryImage') <span class="agricart-category-form__error">{{ $message }}</span> @enderror
+
     <div class="agricart-category-form__names-row">
         <div class="agricart-category-form__field agricart-category-form__field--english">
             <label class="agricart-category-form__label agricart-category-form__label--required" for="category_english_name">English Name</label>
@@ -130,6 +133,8 @@
     </div>
 
     @include('filament.catalog.partials.category-form-hierarchy-strip-preview')
+
+    <p class="agricart-category-form__hint">{{ \App\Modules\Catalog\Support\CatalogWebpImageSpec::uploadHint() }}</p>
 
     <div class="agricart-category-form__names-row">
         <div class="agricart-category-form__field agricart-category-form__field--english">

@@ -87,6 +87,7 @@ class AdminPanelProvider extends PanelProvider
                 fn (): HtmlString => new HtmlString(
                     Vite::withEntryPoints([
                         'resources/js/filament/admin/category-form.js',
+                        'resources/js/filament/admin/brand-form.js',
                         'resources/js/print/agricart-print.js',
                     ])->toHtml()
                 ),

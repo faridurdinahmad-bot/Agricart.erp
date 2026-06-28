@@ -3,6 +3,7 @@
 namespace App\Modules\Catalog\Services;
 
 use App\Models\Catalog\Category;
+use App\Modules\Catalog\Support\CatalogWebpImageSpec;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,6 +11,10 @@ final class CategoryImageStorage
 {
     public static function store(Category $category, UploadedFile $file): string
     {
+        if (! CatalogWebpImageSpec::isAllowedUpload($file)) {
+            throw new \InvalidArgumentException(CatalogWebpImageSpec::invalidTypeMessage());
+        }
+
         self::deleteIfExists($category->image_path);
 
         return $file->store("catalog/categories/{$category->id}", 'public');

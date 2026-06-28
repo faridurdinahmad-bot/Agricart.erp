@@ -105,6 +105,16 @@ const registerAgricartCategoryForm = () => {
                 return;
             }
 
+            const allowedExtensions = ['webp'];
+            const allowedTypes = ['image/webp'];
+            const extension = file.name.split('.').pop()?.toLowerCase() ?? '';
+
+            if (! allowedExtensions.includes(extension) || (file.type && ! allowedTypes.includes(file.type))) {
+                event.target.value = '';
+                window.alert('Only WebP images are allowed.');
+                return;
+            }
+
             if (this.imagePreview) {
                 URL.revokeObjectURL(this.imagePreview);
             }

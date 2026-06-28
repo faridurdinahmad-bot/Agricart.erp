@@ -10,16 +10,26 @@ final class ContentAuditPdfRenderer
     /**
      * @param  array<string, mixed>  $document
      */
-    public function render(array $document, string $view = 'content-audit.category-review-pdf'): string
+    public function render(array $document, ?string $view = null): string
     {
+        $view ??= match ($document['meta']['entity'] ?? 'category') {
+            'brand' => 'content-audit.brand-review-pdf',
+            default => 'content-audit.category-review-pdf',
+        };
+
         return $this->renderDocument($document, $view)->output();
     }
 
     /**
      * @param  array<string, mixed>  $document
      */
-    public function pageCount(array $document, string $view = 'content-audit.category-review-pdf'): int
+    public function pageCount(array $document, ?string $view = null): int
     {
+        $view ??= match ($document['meta']['entity'] ?? 'category') {
+            'brand' => 'content-audit.brand-review-pdf',
+            default => 'content-audit.category-review-pdf',
+        };
+
         return $this->renderDocument($document, $view)->pageCount();
     }
 

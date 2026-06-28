@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class MarketplaceCluster extends BaseModuleCluster
 {
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedGlobeAlt;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedGlobeAlt;
 
     protected static ?int $navigationSort = ModuleNavigationSort::MARKETPLACE;
 

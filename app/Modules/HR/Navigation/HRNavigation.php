@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\HR\Navigation;
 
 /**
@@ -20,5 +21,4 @@ class HRNavigation
     public const PAYROLL = 6;
 
     public const REPORTS = 7;
-
 }

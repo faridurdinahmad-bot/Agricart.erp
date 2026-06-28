@@ -19,5 +19,5 @@ class PosPage extends BaseModulePage
 
     protected static ?int $navigationSort = SalesNavigation::POS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedComputerDesktop;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedComputerDesktop;
 }

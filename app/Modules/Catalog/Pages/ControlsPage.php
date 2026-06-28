@@ -19,5 +19,5 @@ class ControlsPage extends BaseModulePage
 
     protected static ?int $navigationSort = CatalogNavigation::CONTROLS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedAdjustmentsVertical;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedAdjustmentsVertical;
 }

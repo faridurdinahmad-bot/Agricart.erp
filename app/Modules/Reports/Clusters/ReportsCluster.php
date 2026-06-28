@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class ReportsCluster extends BaseModuleCluster
 {
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedChartBar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedChartBar;
 
     protected static ?int $navigationSort = ModuleNavigationSort::REPORTS;
 

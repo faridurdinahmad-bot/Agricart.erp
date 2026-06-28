@@ -19,5 +19,5 @@ class HomepagePage extends BaseModulePage
 
     protected static ?int $navigationSort = StoreNavigation::HOMEPAGE;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedHome;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedHome;
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Accounts\Navigation;
 
 /**
@@ -20,5 +21,4 @@ class AccountsNavigation
     public const TRANSFERS = 6;
 
     public const FINANCIAL_REPORTS = 7;
-
 }

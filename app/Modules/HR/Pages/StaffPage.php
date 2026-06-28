@@ -19,5 +19,5 @@ class StaffPage extends BaseModulePage
 
     protected static ?int $navigationSort = HRNavigation::STAFF;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedUsers;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 }

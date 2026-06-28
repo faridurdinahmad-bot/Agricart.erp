@@ -19,5 +19,5 @@ class TrackingPage extends BaseModulePage
 
     protected static ?int $navigationSort = LogisticsNavigation::TRACKING;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedMapPin;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedMapPin;
 }

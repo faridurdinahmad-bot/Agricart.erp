@@ -18,15 +18,17 @@ class SettingsNavigation
 
     public const AI_SETTINGS = 5;
 
-    public const AI_LOGS = 6;
+    public const AI_PROMPT_TEMPLATES = 6;
 
-    public const PRINTING = 7;
+    public const AI_LOGS = 7;
 
-    public const SYSTEM = 8;
+    public const PRINTING = 8;
 
-    public const PERMISSION = 9;
+    public const SYSTEM = 9;
 
-    public const USERS = 10;
+    public const PERMISSION = 10;
 
-    public const BACKUPS = 11;
+    public const USERS = 11;
+
+    public const BACKUPS = 12;
 }

@@ -19,5 +19,5 @@ class BrandsPage extends BaseModulePage
 
     protected static ?int $navigationSort = CatalogNavigation::BRANDS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedTag;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
 }

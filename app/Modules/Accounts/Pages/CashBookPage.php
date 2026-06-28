@@ -19,5 +19,5 @@ class CashBookPage extends BaseModulePage
 
     protected static ?int $navigationSort = AccountsNavigation::CASH_BOOK;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedBookOpen;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedBookOpen;
 }

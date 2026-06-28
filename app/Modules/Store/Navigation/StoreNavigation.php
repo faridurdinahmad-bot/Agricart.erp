@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Store\Navigation;
 
 /**
@@ -24,5 +25,4 @@ class StoreNavigation
     public const NAVIGATION = 8;
 
     public const STOREFRONT = 9;
-
 }

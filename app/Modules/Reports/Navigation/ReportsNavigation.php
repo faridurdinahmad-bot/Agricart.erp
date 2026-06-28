@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Reports\Navigation;
 
 /**
@@ -26,5 +27,4 @@ class ReportsNavigation
     public const SALES_REPORT = 9;
 
     public const PURCHASE_REPORT = 10;
-
 }

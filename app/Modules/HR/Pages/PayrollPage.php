@@ -19,5 +19,5 @@ class PayrollPage extends BaseModulePage
 
     protected static ?int $navigationSort = HRNavigation::PAYROLL;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
 }

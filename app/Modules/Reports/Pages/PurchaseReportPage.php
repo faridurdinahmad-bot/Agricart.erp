@@ -19,5 +19,5 @@ class PurchaseReportPage extends BaseModulePage
 
     protected static ?int $navigationSort = ReportsNavigation::PURCHASE_REPORT;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedShoppingBag;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingBag;
 }

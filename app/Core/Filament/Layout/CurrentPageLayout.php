@@ -2,6 +2,7 @@
 
 namespace App\Core\Filament\Layout;
 
+use Filament\Navigation\NavigationGroup;
 use Livewire\Component;
 use Livewire\Livewire;
 
@@ -29,7 +30,7 @@ class CurrentPageLayout
     }
 
     /**
-     * @return array<int, \Filament\Navigation\NavigationGroup>
+     * @return array<int, NavigationGroup>
      */
     public static function subNavigation(): array
     {

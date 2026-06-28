@@ -19,5 +19,5 @@ class LeavePage extends BaseModulePage
 
     protected static ?int $navigationSort = HRNavigation::LEAVE;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCalendarDays;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCalendarDays;
 }

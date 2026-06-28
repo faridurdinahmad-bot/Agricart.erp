@@ -25,6 +25,8 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Vite;
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -79,6 +81,15 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::TOPBAR_LOGO_AFTER,
                 fn (): View => view('filament.components.topbar.navigation'),
+            )
+            ->renderHook(
+                PanelsRenderHook::SCRIPTS_BEFORE,
+                fn (): HtmlString => new HtmlString(
+                    Vite::withEntryPoints([
+                        'resources/js/filament/admin/category-form.js',
+                        'resources/js/print/agricart-print.js',
+                    ])->toHtml()
+                ),
             )
             ->renderHook(
                 PanelsRenderHook::CONTENT_BEFORE,

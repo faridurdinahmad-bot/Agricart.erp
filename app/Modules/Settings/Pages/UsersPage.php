@@ -36,7 +36,7 @@ class UsersPage extends BaseModulePage
 
     protected static ?int $navigationSort = SettingsNavigation::USERS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedUsers;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
     public string $search = '';
 
@@ -49,7 +49,7 @@ class UsersPage extends BaseModulePage
         $this->resetStaffForm();
     }
 
-    public function getHeading(): string | Htmlable | null
+    public function getHeading(): string|Htmlable|null
     {
         return null;
     }

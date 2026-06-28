@@ -19,5 +19,5 @@ class CashReportPage extends BaseModulePage
 
     protected static ?int $navigationSort = ReportsNavigation::CASH_REPORT;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
 }

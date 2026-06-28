@@ -2,7 +2,6 @@
 
 namespace App\Core\Filament\Pages;
 
-use App\Core\Authorization\PermissionCatalog;
 use App\Models\User;
 use Filament\Clusters\Cluster;
 use Filament\Pages\Page;

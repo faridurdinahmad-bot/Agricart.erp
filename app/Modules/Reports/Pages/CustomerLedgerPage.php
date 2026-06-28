@@ -19,5 +19,5 @@ class CustomerLedgerPage extends BaseModulePage
 
     protected static ?int $navigationSort = ReportsNavigation::CUSTOMER_LEDGER;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedUsers;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 }

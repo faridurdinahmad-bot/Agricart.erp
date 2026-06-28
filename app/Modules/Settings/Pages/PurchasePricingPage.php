@@ -19,5 +19,5 @@ class PurchasePricingPage extends BaseModulePage
 
     protected static ?int $navigationSort = SettingsNavigation::PURCHASE_PRICING;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
 }

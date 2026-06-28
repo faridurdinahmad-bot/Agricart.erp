@@ -38,7 +38,7 @@ class StaffApprovalPage extends BaseModulePage
 
     protected static ?int $navigationSort = ApprovalsNavigation::STAFF_APPROVAL;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedUserGroup;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
 
     /** @var array<int, int|null> */
     public array $approvalRoles = [];
@@ -49,7 +49,7 @@ class StaffApprovalPage extends BaseModulePage
 
     public ?int $viewingUserId = null;
 
-    public function getHeading(): string | Htmlable | null
+    public function getHeading(): string|Htmlable|null
     {
         return null;
     }

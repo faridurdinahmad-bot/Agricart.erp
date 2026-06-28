@@ -19,5 +19,5 @@ class PriceTagsPage extends BaseModulePage
 
     protected static ?int $navigationSort = InventoryNavigation::PRICE_TAGS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
 }

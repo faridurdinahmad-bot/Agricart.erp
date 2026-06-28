@@ -19,5 +19,5 @@ class ChannelsPage extends BaseModulePage
 
     protected static ?int $navigationSort = StoreNavigation::CHANNELS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedSignal;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedSignal;
 }

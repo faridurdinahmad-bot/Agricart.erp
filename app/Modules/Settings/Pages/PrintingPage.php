@@ -19,5 +19,5 @@ class PrintingPage extends BaseModulePage
 
     protected static ?int $navigationSort = SettingsNavigation::PRINTING;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedPrinter;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedPrinter;
 }

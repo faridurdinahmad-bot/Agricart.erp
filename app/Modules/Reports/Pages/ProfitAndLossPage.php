@@ -19,5 +19,5 @@ class ProfitAndLossPage extends BaseModulePage
 
     protected static ?int $navigationSort = ReportsNavigation::PROFIT_AND_LOSS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedChartBarSquare;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedChartBarSquare;
 }

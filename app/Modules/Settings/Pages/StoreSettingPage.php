@@ -19,5 +19,5 @@ class StoreSettingPage extends BaseModulePage
 
     protected static ?int $navigationSort = SettingsNavigation::STORE_SETTING;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
 }

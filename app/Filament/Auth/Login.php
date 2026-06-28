@@ -2,7 +2,6 @@
 
 namespace App\Filament\Auth;
 
-use App\Core\Authorization\Enums\UserStatus;
 use App\Models\User;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Auth\Http\Responses\Contracts\LoginResponse;

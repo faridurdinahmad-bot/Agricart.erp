@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class DocumentationCluster extends BaseModuleCluster
 {
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedBookOpen;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedBookOpen;
 
     protected static ?int $navigationSort = ModuleNavigationSort::DOCUMENTATION;
 

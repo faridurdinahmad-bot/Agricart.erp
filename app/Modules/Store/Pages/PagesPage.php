@@ -19,5 +19,5 @@ class PagesPage extends BaseModulePage
 
     protected static ?int $navigationSort = StoreNavigation::PAGES;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedDocument;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedDocument;
 }

@@ -19,5 +19,5 @@ class CouriersPage extends BaseModulePage
 
     protected static ?int $navigationSort = LogisticsNavigation::COURIERS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedUserGroup;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
 }

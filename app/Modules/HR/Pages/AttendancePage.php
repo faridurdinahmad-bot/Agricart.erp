@@ -19,5 +19,5 @@ class AttendancePage extends BaseModulePage
 
     protected static ?int $navigationSort = HRNavigation::ATTENDANCE;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedClock;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedClock;
 }

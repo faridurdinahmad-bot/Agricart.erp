@@ -19,5 +19,5 @@ class QuotationsPage extends BaseModulePage
 
     protected static ?int $navigationSort = SalesNavigation::QUOTATIONS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedDocumentText;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 }

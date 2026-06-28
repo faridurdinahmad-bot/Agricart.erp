@@ -19,5 +19,5 @@ class BackupsPage extends BaseModulePage
 
     protected static ?int $navigationSort = SettingsNavigation::BACKUPS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCloudArrowUp;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCloudArrowUp;
 }

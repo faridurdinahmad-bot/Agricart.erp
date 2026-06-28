@@ -19,5 +19,5 @@ class BankAccountsPage extends BaseModulePage
 
     protected static ?int $navigationSort = AccountsNavigation::BANK_ACCOUNTS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedBuildingLibrary;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingLibrary;
 }

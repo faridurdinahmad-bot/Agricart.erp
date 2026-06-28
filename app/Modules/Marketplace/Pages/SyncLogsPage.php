@@ -19,5 +19,5 @@ class SyncLogsPage extends BaseModulePage
 
     protected static ?int $navigationSort = MarketplaceNavigation::SYNC_LOGS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedDocumentText;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 }

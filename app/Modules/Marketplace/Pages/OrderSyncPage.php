@@ -19,5 +19,5 @@ class OrderSyncPage extends BaseModulePage
 
     protected static ?int $navigationSort = MarketplaceNavigation::ORDER_SYNC;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedArrowPathRoundedSquare;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowPathRoundedSquare;
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Catalog\Navigation;
 
 /**
@@ -22,5 +23,4 @@ class CatalogNavigation
     public const CONTROLS = 7;
 
     public const LABELS = 8;
-
 }

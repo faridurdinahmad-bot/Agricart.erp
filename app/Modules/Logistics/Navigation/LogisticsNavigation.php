@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Logistics\Navigation;
 
 /**
@@ -18,5 +19,4 @@ class LogisticsNavigation
     public const DELIVERY_ZONES = 5;
 
     public const SHIPPING_RATES = 6;
-
 }

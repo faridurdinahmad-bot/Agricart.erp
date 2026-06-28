@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class ApprovalsCluster extends BaseModuleCluster
 {
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedClipboardDocumentCheck;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentCheck;
 
     protected static ?int $navigationSort = ModuleNavigationSort::APPROVALS;
 

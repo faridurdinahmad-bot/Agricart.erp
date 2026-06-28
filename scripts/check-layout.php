@@ -1,6 +1,6 @@
 <?php
 
-$cf = sys_get_temp_dir() . '/ag_layout_check.txt';
+$cf = sys_get_temp_dir().'/ag_layout_check.txt';
 @unlink($cf);
 
 function req(string $url, string $cf, ?array $post = null): string
@@ -48,4 +48,4 @@ $checks = [
     'module_settings_nav' => str_contains($dashboard, 'Settings'),
 ];
 
-echo json_encode($checks, JSON_PRETTY_PRINT) . PHP_EOL;
+echo json_encode($checks, JSON_PRETTY_PRINT).PHP_EOL;

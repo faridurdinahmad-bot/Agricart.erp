@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Contacts\Navigation;
 
 /**
@@ -12,5 +13,4 @@ class ContactsNavigation
     public const SUPPLIERS = 2;
 
     public const CUSTOMERS = 3;
-
 }

@@ -35,7 +35,7 @@ class PermissionPage extends BaseModulePage
 
     protected static ?int $navigationSort = SettingsNavigation::PERMISSION;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedShieldCheck;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldCheck;
 
     public ?int $selectedRoleId = null;
 
@@ -48,7 +48,7 @@ class PermissionPage extends BaseModulePage
     /** @var list<string> */
     public array $selectedPermissions = [];
 
-    public function getHeading(): string | Htmlable | null
+    public function getHeading(): string|Htmlable|null
     {
         return null;
     }

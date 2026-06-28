@@ -5,7 +5,6 @@ namespace App\Core\Staff\Concerns;
 use App\Core\Authorization\UserProvisioner;
 use App\Core\Staff\StaffFormValidator;
 use App\Models\User;
-use Illuminate\Validation\ValidationException;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 trait InteractsWithStaffForm

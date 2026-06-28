@@ -19,5 +19,5 @@ class SalesSummaryPage extends BaseModulePage
 
     protected static ?int $navigationSort = ReportsNavigation::SALES_SUMMARY;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedChartBar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedChartBar;
 }

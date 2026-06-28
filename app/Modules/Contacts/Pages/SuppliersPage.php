@@ -19,5 +19,5 @@ class SuppliersPage extends BaseModulePage
 
     protected static ?int $navigationSort = ContactsNavigation::SUPPLIERS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedTruck;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedTruck;
 }

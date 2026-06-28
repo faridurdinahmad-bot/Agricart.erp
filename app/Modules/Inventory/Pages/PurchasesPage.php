@@ -19,5 +19,5 @@ class PurchasesPage extends BaseModulePage
 
     protected static ?int $navigationSort = InventoryNavigation::PURCHASES;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedShoppingCart;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingCart;
 }

@@ -19,5 +19,5 @@ class ApiPage extends BaseModulePage
 
     protected static ?int $navigationSort = StoreNavigation::API;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCodeBracket;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCodeBracket;
 }

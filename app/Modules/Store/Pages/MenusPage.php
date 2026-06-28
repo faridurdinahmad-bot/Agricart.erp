@@ -19,5 +19,5 @@ class MenusPage extends BaseModulePage
 
     protected static ?int $navigationSort = StoreNavigation::MENUS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedBars3;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedBars3;
 }

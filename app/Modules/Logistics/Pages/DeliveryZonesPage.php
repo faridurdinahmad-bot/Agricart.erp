@@ -19,5 +19,5 @@ class DeliveryZonesPage extends BaseModulePage
 
     protected static ?int $navigationSort = LogisticsNavigation::DELIVERY_ZONES;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedMap;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedMap;
 }

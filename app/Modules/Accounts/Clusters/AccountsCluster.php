@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class AccountsCluster extends BaseModuleCluster
 {
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCalculator;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCalculator;
 
     protected static ?int $navigationSort = ModuleNavigationSort::ACCOUNTS;
 

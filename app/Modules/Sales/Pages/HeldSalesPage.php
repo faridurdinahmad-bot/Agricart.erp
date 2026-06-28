@@ -19,5 +19,5 @@ class HeldSalesPage extends BaseModulePage
 
     protected static ?int $navigationSort = SalesNavigation::HELD_SALES;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedPauseCircle;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedPauseCircle;
 }

@@ -4,10 +4,9 @@
  * Captures Phase 1.5 freeze screenshots (requires local server on :8003).
  * Run: php scripts/capture-freeze-screenshots.php
  */
-
 $baseUrl = 'http://127.0.0.1:8003';
-$outDir = __DIR__ . '/../storage/app/phase1-screenshots';
-$cookieFile = sys_get_temp_dir() . '/agricart_screenshot_cookies.txt';
+$outDir = __DIR__.'/../storage/app/phase1-screenshots';
+$cookieFile = sys_get_temp_dir().'/agricart_screenshot_cookies.txt';
 
 @mkdir($outDir, 0755, true);
 @unlink($cookieFile);
@@ -40,7 +39,7 @@ preg_match('/name="_token" value="([^"]+)"/', $login, $match)
 $token = $match[1] ?? null;
 
 if (! $token) {
-    fwrite(STDERR, 'Failed to login: no CSRF token (response length: ' . strlen($login) . ")\n");
+    fwrite(STDERR, 'Failed to login: no CSRF token (response length: '.strlen($login).")\n");
     exit(1);
 }
 
@@ -57,7 +56,7 @@ foreach (file($cookieFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $li
     }
     $parts = explode("\t", $line);
     if (count($parts) >= 7) {
-        $cookieHeader .= $parts[5] . '=' . $parts[6] . '; ';
+        $cookieHeader .= $parts[5].'='.$parts[6].'; ';
     }
 }
 
@@ -76,8 +75,8 @@ $shots = [
 ];
 
 foreach ($shots as $shot) {
-    $out = $outDir . DIRECTORY_SEPARATOR . $shot['file'];
-    $url = $baseUrl . $shot['url'];
+    $out = $outDir.DIRECTORY_SEPARATOR.$shot['file'];
+    $url = $baseUrl.$shot['url'];
 
     $cmd = sprintf(
         '"%s" --headless=new --disable-gpu --no-sandbox --window-size=%d,%d --screenshot="%s" --header="Cookie: %s" "%s" 2>&1',
@@ -90,7 +89,7 @@ foreach ($shots as $shot) {
     );
 
     exec($cmd, $output, $code);
-    echo ($code === 0 && file_exists($out) ? 'OK' : 'FAIL') . " {$shot['file']}\n";
+    echo ($code === 0 && file_exists($out) ? 'OK' : 'FAIL')." {$shot['file']}\n";
 }
 
 echo "Saved to {$outDir}\n";

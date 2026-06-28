@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Sales\Navigation;
 
 /**
@@ -18,5 +19,4 @@ class SalesNavigation
     public const QUOTATIONS = 5;
 
     public const RETURNS = 6;
-
 }

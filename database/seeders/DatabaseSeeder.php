@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AgricartAuthorizationSeeder::class,
+            AiPromptTemplateSeeder::class,
         ]);
     }
 }

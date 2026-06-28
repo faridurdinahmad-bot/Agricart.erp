@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Core\Authorization\Enums\UserStatus;
 use App\Models\User;
 use Filament\Facades\Filament;
 use Illuminate\Contracts\View\View;

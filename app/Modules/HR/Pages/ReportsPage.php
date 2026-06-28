@@ -19,5 +19,5 @@ class ReportsPage extends BaseModulePage
 
     protected static ?int $navigationSort = HRNavigation::REPORTS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedChartBar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedChartBar;
 }

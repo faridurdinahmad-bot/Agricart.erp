@@ -19,5 +19,5 @@ class CustomersPage extends BaseModulePage
 
     protected static ?int $navigationSort = ContactsNavigation::CUSTOMERS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedUsers;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 }

@@ -19,5 +19,5 @@ class SystemPage extends BaseModulePage
 
     protected static ?int $navigationSort = SettingsNavigation::SYSTEM;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedServerStack;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedServerStack;
 }

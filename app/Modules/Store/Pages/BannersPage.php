@@ -19,5 +19,5 @@ class BannersPage extends BaseModulePage
 
     protected static ?int $navigationSort = StoreNavigation::BANNERS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedPhoto;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
 }

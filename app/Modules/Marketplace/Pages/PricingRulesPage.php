@@ -19,5 +19,5 @@ class PricingRulesPage extends BaseModulePage
 
     protected static ?int $navigationSort = MarketplaceNavigation::PRICING_RULES;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedTag;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
 }

@@ -19,5 +19,5 @@ class ReorderPage extends BaseModulePage
 
     protected static ?int $navigationSort = InventoryNavigation::REORDER;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedArrowPath;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowPath;
 }

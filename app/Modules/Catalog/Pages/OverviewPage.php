@@ -19,5 +19,5 @@ class OverviewPage extends BaseModulePage
 
     protected static ?int $navigationSort = CatalogNavigation::OVERVIEW;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedSquares2x2;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedSquares2x2;
 }

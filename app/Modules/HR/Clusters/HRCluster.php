@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class HRCluster extends BaseModuleCluster
 {
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedIdentification;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedIdentification;
 
     protected static ?int $navigationSort = ModuleNavigationSort::HR;
 

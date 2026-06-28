@@ -19,5 +19,5 @@ class ProductsPage extends BaseModulePage
 
     protected static ?int $navigationSort = CatalogNavigation::PRODUCTS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCube;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCube;
 }

@@ -19,5 +19,5 @@ class FinancialReportsPage extends BaseModulePage
 
     protected static ?int $navigationSort = AccountsNavigation::FINANCIAL_REPORTS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedChartBar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedChartBar;
 }

@@ -19,5 +19,5 @@ class PaymentsPage extends BaseModulePage
 
     protected static ?int $navigationSort = InventoryNavigation::PAYMENTS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCreditCard;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCreditCard;
 }

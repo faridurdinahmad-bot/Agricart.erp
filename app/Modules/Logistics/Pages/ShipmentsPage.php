@@ -19,5 +19,5 @@ class ShipmentsPage extends BaseModulePage
 
     protected static ?int $navigationSort = LogisticsNavigation::SHIPMENTS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedTruck;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedTruck;
 }

@@ -19,5 +19,5 @@ class AttributesPage extends BaseModulePage
 
     protected static ?int $navigationSort = CatalogNavigation::ATTRIBUTES;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedAdjustmentsHorizontal;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedAdjustmentsHorizontal;
 }

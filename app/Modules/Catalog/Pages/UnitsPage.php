@@ -19,5 +19,5 @@ class UnitsPage extends BaseModulePage
 
     protected static ?int $navigationSort = CatalogNavigation::UNITS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedScale;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedScale;
 }

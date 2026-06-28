@@ -19,5 +19,5 @@ class TransfersPage extends BaseModulePage
 
     protected static ?int $navigationSort = AccountsNavigation::TRANSFERS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedArrowsRightLeft;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowsRightLeft;
 }

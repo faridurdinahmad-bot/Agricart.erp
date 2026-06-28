@@ -19,5 +19,5 @@ class LabelsPage extends BaseModulePage
 
     protected static ?int $navigationSort = CatalogNavigation::LABELS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedTicket;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedTicket;
 }

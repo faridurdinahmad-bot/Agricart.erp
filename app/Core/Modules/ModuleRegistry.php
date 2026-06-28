@@ -4,8 +4,8 @@ namespace App\Core\Modules;
 
 use App\Core\Modules\Contracts\ModuleInterface;
 use Filament\Clusters\Cluster;
-use Filament\Panel;
 use Filament\Pages\Page;
+use Filament\Panel;
 
 /**
  * Central registry for Agricart Filament sidebar modules.

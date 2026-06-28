@@ -4,7 +4,6 @@
  * Phase 1.5 UI freeze verification (read-only HTTP checks).
  * Run: php scripts/verify-ui-freeze.php [base_url]
  */
-
 $baseUrl = $argv[1] ?? 'http://agricart.test:8002';
 
 $routes = [
@@ -22,7 +21,7 @@ $routes = [
     '/admin/settings/backups',
 ];
 
-$cookieFile = sys_get_temp_dir() . '/agricart_verify_cookies.txt';
+$cookieFile = sys_get_temp_dir().'/agricart_verify_cookies.txt';
 @unlink($cookieFile);
 
 function request(string $url, string $cookieFile, ?array $post = null): array
@@ -108,6 +107,6 @@ echo json_encode([
     'login_no_bunny' => ! str_contains($loginCheck['body'], 'fonts.bunny.net'),
     'login_no_inter' => stripos($loginCheck['body'], 'Inter Variable') === false,
     'results' => $results,
-], JSON_PRETTY_PRINT) . PHP_EOL;
+], JSON_PRETTY_PRINT).PHP_EOL;
 
 exit($failures > 0 ? 1 : 0);

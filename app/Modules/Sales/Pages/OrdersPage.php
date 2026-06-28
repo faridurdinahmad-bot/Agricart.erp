@@ -19,5 +19,5 @@ class OrdersPage extends BaseModulePage
 
     protected static ?int $navigationSort = SalesNavigation::ORDERS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 }

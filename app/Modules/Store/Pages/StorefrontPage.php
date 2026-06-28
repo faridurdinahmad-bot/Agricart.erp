@@ -19,5 +19,5 @@ class StorefrontPage extends BaseModulePage
 
     protected static ?int $navigationSort = StoreNavigation::STOREFRONT;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
 }

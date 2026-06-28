@@ -19,5 +19,5 @@ class SupplierLedgerPage extends BaseModulePage
 
     protected static ?int $navigationSort = ReportsNavigation::SUPPLIER_LEDGER;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedTruck;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedTruck;
 }

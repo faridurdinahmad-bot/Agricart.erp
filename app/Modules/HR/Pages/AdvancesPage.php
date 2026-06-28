@@ -19,5 +19,5 @@ class AdvancesPage extends BaseModulePage
 
     protected static ?int $navigationSort = HRNavigation::ADVANCES;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedBanknotes;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedBanknotes;
 }

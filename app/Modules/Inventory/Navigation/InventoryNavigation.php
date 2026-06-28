@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Inventory\Navigation;
 
 /**
@@ -20,5 +21,4 @@ class InventoryNavigation
     public const REORDER = 6;
 
     public const PRICE_TAGS = 7;
-
 }

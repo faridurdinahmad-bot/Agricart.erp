@@ -19,5 +19,5 @@ class ProductSyncPage extends BaseModulePage
 
     protected static ?int $navigationSort = MarketplaceNavigation::PRODUCT_SYNC;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedArrowPath;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowPath;
 }

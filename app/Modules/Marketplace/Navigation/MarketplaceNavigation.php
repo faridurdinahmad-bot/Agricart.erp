@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Marketplace\Navigation;
 
 /**
@@ -18,5 +19,4 @@ class MarketplaceNavigation
     public const PRICING_RULES = 5;
 
     public const SYNC_LOGS = 6;
-
 }

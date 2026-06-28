@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class ContactsCluster extends BaseModuleCluster
 {
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedUserGroup;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
 
     protected static ?int $navigationSort = ModuleNavigationSort::CONTACTS;
 

@@ -10,7 +10,7 @@ use Livewire\Features\SupportRedirects\Redirector;
 
 class AgricartLoginResponse implements LoginResponse
 {
-    public function toResponse($request): RedirectResponse | Redirector
+    public function toResponse($request): RedirectResponse|Redirector
     {
         $user = auth()->user();
         $panel = Filament::getCurrentOrDefaultPanel();

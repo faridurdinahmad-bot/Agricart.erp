@@ -19,5 +19,5 @@ class ReturnsPage extends BaseModulePage
 
     protected static ?int $navigationSort = SalesNavigation::RETURNS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedArrowUturnLeft;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowUturnLeft;
 }

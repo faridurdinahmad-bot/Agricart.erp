@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class LogisticsCluster extends BaseModuleCluster
 {
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedTruck;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedTruck;
 
     protected static ?int $navigationSort = ModuleNavigationSort::LOGISTICS;
 

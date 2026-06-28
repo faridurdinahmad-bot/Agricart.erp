@@ -19,5 +19,5 @@ class ExpenseCategoriesPage extends BaseModulePage
 
     protected static ?int $navigationSort = AccountsNavigation::EXPENSE_CATEGORIES;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 }

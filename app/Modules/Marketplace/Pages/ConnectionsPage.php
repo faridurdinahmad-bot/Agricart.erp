@@ -19,5 +19,5 @@ class ConnectionsPage extends BaseModulePage
 
     protected static ?int $navigationSort = MarketplaceNavigation::CONNECTIONS;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedLink;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedLink;
 }

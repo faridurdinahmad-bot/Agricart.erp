@@ -19,5 +19,5 @@ class TaxSystemPage extends BaseModulePage
 
     protected static ?int $navigationSort = SettingsNavigation::TAX_SYSTEM;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedReceiptPercent;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedReceiptPercent;
 }

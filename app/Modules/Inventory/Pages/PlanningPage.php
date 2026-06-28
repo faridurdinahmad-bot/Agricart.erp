@@ -19,5 +19,5 @@ class PlanningPage extends BaseModulePage
 
     protected static ?int $navigationSort = InventoryNavigation::PLANNING;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCalendarDays;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCalendarDays;
 }

@@ -19,5 +19,5 @@ class ShippingRatesPage extends BaseModulePage
 
     protected static ?int $navigationSort = LogisticsNavigation::SHIPPING_RATES;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCurrencyDollar;
 }

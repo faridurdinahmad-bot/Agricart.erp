@@ -19,5 +19,5 @@ class StockReportPage extends BaseModulePage
 
     protected static ?int $navigationSort = ReportsNavigation::STOCK_REPORT;
 
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedCube;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedCube;
 }

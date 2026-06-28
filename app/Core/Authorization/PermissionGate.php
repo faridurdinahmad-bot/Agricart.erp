@@ -139,13 +139,13 @@ final class PermissionGate
             return;
         }
 
-        $fingerprint = static::catalogFingerprint();
+        $fingerprint = self::catalogFingerprint();
 
-        if (Cache::get(static::FINGERPRINT_CACHE_KEY) === $fingerprint) {
+        if (Cache::get(self::FINGERPRINT_CACHE_KEY) === $fingerprint) {
             return;
         }
 
-        Cache::lock(static::SYNC_LOCK_KEY, 30)->block(5, function () use ($fingerprint): void {
+        Cache::lock(self::SYNC_LOCK_KEY, 30)->block(5, function () use ($fingerprint): void {
             if (Cache::get(static::FINGERPRINT_CACHE_KEY) === $fingerprint) {
                 return;
             }
@@ -156,7 +156,7 @@ final class PermissionGate
 
     public static function rememberCatalogFingerprint(): void
     {
-        Cache::forever(static::FINGERPRINT_CACHE_KEY, static::catalogFingerprint());
+        Cache::forever(self::FINGERPRINT_CACHE_KEY, self::catalogFingerprint());
     }
 
     public static function syncDefinitions(): void

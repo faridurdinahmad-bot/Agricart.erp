@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class SalesCluster extends BaseModuleCluster
 {
-    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedShoppingCart;
+    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingCart;
 
     protected static ?int $navigationSort = ModuleNavigationSort::SALES;
 

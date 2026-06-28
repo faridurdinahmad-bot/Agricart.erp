@@ -13,5 +13,3 @@ Route::get('/register', RegisterPage::class)->name('register');
 Route::middleware('auth')->group(function () {
     Route::get('/registration/status', RegistrationStatusPage::class)->name('registration.status');
 });
-
-Route::view('/catalog/category-form-preview', 'filament.catalog.category-form-preview-layout');

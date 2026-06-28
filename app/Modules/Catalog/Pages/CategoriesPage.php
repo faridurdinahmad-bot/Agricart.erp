@@ -190,6 +190,7 @@ class CategoriesPage extends BaseModulePage
                 ->label('Add Category')
                 ->icon(Heroicon::OutlinedPlus)
                 ->color('primary')
+                ->visible(fn (): bool => $this->canPageAction(PermissionAction::Create))
                 ->before(function (): void {
                     $this->resetCategoryForm();
                 }),
@@ -229,12 +230,16 @@ class CategoriesPage extends BaseModulePage
                 Action::make('saveAndAddNextCategory')
                     ->label('Save & Add Next')
                     ->outlined()
+                    ->visible(fn (): bool => ! $this->editingCategoryId && $this->canPageAction(PermissionAction::Create))
                     ->action(function (): void {
                         $this->saveCategory(addAnother: true);
                     }),
                 Action::make('submitCategoryForm')
                     ->label('Save & Close')
                     ->color('primary')
+                    ->visible(fn (): bool => $this->editingCategoryId
+                        ? $this->canPageAction(PermissionAction::Update)
+                        : $this->canPageAction(PermissionAction::Create))
                     ->cancelParentActions()
                     ->action(function (): void {
                         $this->saveCategory();

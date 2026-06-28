@@ -48,7 +48,7 @@ trait InteractsWithCategoryView
                 $this->markCategoryReviewedFooterAction(),
                 Action::make('viewCategoryEdit')
                     ->label('Edit')
-                    ->visible(fn (): bool => (bool) $this->viewingCategoryId)
+                    ->visible(fn (): bool => (bool) $this->viewingCategoryId && $this->canPageAction(PermissionAction::Update))
                     ->action(function (): void {
                         $categoryId = $this->viewingCategoryId;
                         $this->unmountAction();
@@ -59,13 +59,13 @@ trait InteractsWithCategoryView
                     ->icon('heroicon-o-printer')
                     ->color('primary')
                     ->extraAttributes(['class' => 'agricart-no-print'])
-                    ->visible(fn (): bool => (bool) $this->viewingCategoryId)
+                    ->visible(fn (): bool => (bool) $this->viewingCategoryId && $this->canPageAction(PermissionAction::Print))
                     ->action(fn (): mixed => $this->printCategoryReview()),
                 Action::make('viewCategoryExport')
                     ->label('Export for Review')
                     ->outlined()
                     ->extraAttributes(['class' => 'agricart-no-print'])
-                    ->visible(fn (): bool => (bool) $this->viewingCategoryId)
+                    ->visible(fn (): bool => (bool) $this->viewingCategoryId && $this->canPageAction(PermissionAction::Export))
                     ->action(function (): void {
                         $this->contentAuditCategoryId = $this->viewingCategoryId;
                         $this->mountAction('exportCategoryReview');

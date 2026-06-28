@@ -4,10 +4,10 @@ namespace App\Modules\Catalog\Services;
 
 use App\Core\Numbering\EntityCodeGenerator;
 
-final class CategoryCodeGenerator
+final class BrandCodeGenerator
 {
     public static function next(): string
     {
-        return EntityCodeGenerator::next(EntityCodeGenerator::prefixFor('category'));
+        return EntityCodeGenerator::next(EntityCodeGenerator::prefixFor('brand'));
     }
 }

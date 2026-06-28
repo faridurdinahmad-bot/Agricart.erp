@@ -42,7 +42,7 @@ trait InteractsWithCategoryContentAuditExport
 
     public function printCategoryReview(bool $openViewIfNeeded = false): void
     {
-        $this->authorizePageAction(PermissionAction::Export);
+        $this->authorizePageAction(PermissionAction::Print);
 
         $categoryId = (int) ($this->viewingCategoryId ?? $this->contentAuditCategoryId ?? $this->editingCategoryId ?? 0);
 
@@ -112,7 +112,7 @@ trait InteractsWithCategoryContentAuditExport
         return Action::make('exportCategoryForReview')
             ->label('Export for Review')
             ->outlined()
-            ->visible(fn (): bool => (bool) $this->editingCategoryId)
+            ->visible(fn (): bool => (bool) $this->editingCategoryId && $this->canPageAction(PermissionAction::Export))
             ->action(function (): void {
                 $this->authorizePageAction(PermissionAction::Export);
                 $this->contentAuditCategoryId = $this->editingCategoryId;

@@ -64,6 +64,7 @@
                     placeholder="Auto-filled from image filename"
                     wire:model="categoryForm.english_name"
                 >
+                @if ($this->canPageAction($this->editingCategoryId ? \App\Core\Authorization\Enums\PermissionAction::Update : \App\Core\Authorization\Enums\PermissionAction::Create))
                 <button
                     type="button"
                     class="agricart-category-form__control-action"
@@ -78,6 +79,7 @@
                     </svg>
                     <span wire:loading wire:target="generateCategoryAiContent" class="agricart-category-form__control-action-loading">…</span>
                 </button>
+                @endif
             </div>
             @error('categoryForm.english_name') <span class="agricart-category-form__error">{{ $message }}</span> @enderror
         </div>

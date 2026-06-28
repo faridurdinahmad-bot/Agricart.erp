@@ -27,7 +27,7 @@ class CategoryCanonicalUrlTest extends TestCase
     public function test_create_generates_slug_and_canonical_url(): void
     {
         $parent = Category::query()->create([
-            'code' => 'CAT-000010',
+            'code' => 'CAT-10',
             'name_en' => 'Irrigation',
             'name_ur' => 'آبپاشی',
             'url_slug' => 'irrigation',
@@ -50,7 +50,7 @@ class CategoryCanonicalUrlTest extends TestCase
     public function test_seo_only_update_keeps_canonical_url(): void
     {
         $category = Category::query()->create([
-            'code' => 'CAT-000011',
+            'code' => 'CAT-11',
             'name_en' => 'Sprayers',
             'name_ur' => 'مسنگل',
             'url_slug' => 'sprayers',
@@ -76,7 +76,7 @@ class CategoryCanonicalUrlTest extends TestCase
         $user = User::factory()->create();
 
         $category = Category::query()->create([
-            'code' => 'CAT-000012',
+            'code' => 'CAT-12',
             'name_en' => 'Sprayers',
             'name_ur' => 'مسنگل',
             'url_slug' => 'sprayers',
